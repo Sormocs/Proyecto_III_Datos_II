@@ -1,0 +1,3 @@
+/home/sormocs/CLionProjects/Proyecto III/Proyecto_III_Datos_II/Client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/sormocs/CLionProjects/Proyecto III/Proyecto_III_Datos_II/Client/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/sormocs/CLionProjects/Proyecto III/Proyecto_III_Datos_II/Client/cmake-build-debug/CMakeFiles/Client.dir
