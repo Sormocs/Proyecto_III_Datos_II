@@ -2,7 +2,6 @@
  * @file GUI.h contiene declaraciones de métodos y atributos de la interfaz gráfica.
  */
 
-#include <SFML/Graphics.hpp>
 #include <thread>
 #include "Button.h"
 #include "SFMLTools.h"

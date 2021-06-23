@@ -67,7 +67,7 @@ void GUI::MainScreen() {
 void GUI::Fill(Color color) {
 
     sf::RectangleShape bg = sf::RectangleShape(sf::Vector2f (1000,650));
-    bg.setFillColor(sf::Color(150,150,100,255));
+    bg.setFillColor(gris);
     bg.setPosition(0,0);
     window->draw(bg);
 }
