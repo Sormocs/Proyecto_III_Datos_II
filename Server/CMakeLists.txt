@@ -4,4 +4,4 @@ project(Server)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "-pthread")
 
-add_executable(Server main.cpp ServerSocket.cpp ServerSocket.h)
+add_executable(Server main.cpp ServerSocket.cpp ServerSocket.h ListDiskNode.cpp ListDiskNode.h DiskNode.cpp DiskNode.h)
