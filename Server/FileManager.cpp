@@ -139,5 +139,7 @@ string FileManager::GetPath(std::string node) {
     auto nodeElement = nodesElement->FirstChildElement(node.c_str());
     auto nodePort = nodeElement->FirstChildElement("Path");
 
+
+
     return nodePort->GetText();
 }

@@ -5,8 +5,9 @@
 #include "DiskNode.h"
 
 
-DiskNode::DiskNode() {
+DiskNode::DiskNode(std::string path) {
 
+    this->path = path;
     back = nullptr;
     next = nullptr;
 
@@ -26,4 +27,8 @@ void DiskNode::SetBack(DiskNode *node) {
 
 void DiskNode::SetNext(DiskNode *node) {
     next = node;
+}
+
+ListPath* DiskNode::GetData() {
+    return data;
 }

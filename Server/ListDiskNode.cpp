@@ -8,12 +8,12 @@ ListDiskNode::ListDiskNode() {
     head = nullptr;
 }
 
-void ListDiskNode::Add(DiskNode *node) {
-
+void ListDiskNode::Add(std::string path) {
+    DiskNode* node = new DiskNode(path);
     if(head == nullptr){
-        head = nullptr;
+        head = node;
     } else{
-        DiskNode* temp;
+        DiskNode* temp = new DiskNode(path);
         for (temp = head; temp->GetNext() != nullptr; temp = temp->GetNext());
         temp->SetNext(node);
         node->SetBack(temp);
