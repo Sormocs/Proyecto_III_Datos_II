@@ -10,6 +10,7 @@
 #include "json.hpp"
 
 using namespace std;
+using json = nlohmann::json;
 
 class NodeController {
 
@@ -25,6 +26,7 @@ public:
 
     NodeController();
     void SaveFile(string text, string path);
+    void ConfigMetada(string name, string path, int bytes);
 
 
 

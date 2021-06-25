@@ -34,7 +34,7 @@ int main() {
 
     NodeController *controller = new NodeController();
 
-    controller->SaveFile("hola mundo", "hola");
+    controller->SaveFile("El TEC es una mierda entera, me quiero morir porfavor", "test");
 
 
 }
