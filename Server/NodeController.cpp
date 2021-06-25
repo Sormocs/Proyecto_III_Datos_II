@@ -26,8 +26,6 @@ void NodeController::SaveFile(string text, string path) {
     ConfigMetada(path,  path2, converter->text1.length());
     ConfigMetada(path,  path3, converter->text1.length());
 
-
-
 }
 
 void NodeController::ConfigMetada(string name, string path, int bytes) {
