@@ -3,7 +3,9 @@
 
 int main(int argc, char *argv[]) {
 
-    Run(argc, argv);
+    SetInstance(new UI(argc, argv));
+
+    Run();
 
     return 0;
 }
