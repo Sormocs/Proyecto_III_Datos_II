@@ -7,7 +7,10 @@
 
 #include <iostream>
 #include "ListPath.h"
+#include "FileManager.h"
+#include "json.hpp"
 
+using json = nlohmann::json;
 
 class DiskNode {
 

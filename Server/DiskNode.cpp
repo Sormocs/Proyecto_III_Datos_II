@@ -10,6 +10,7 @@ DiskNode::DiskNode(std::string path) {
     this->path = path;
     back = nullptr;
     next = nullptr;
+    FillPath();
 
 }
 
@@ -31,4 +32,22 @@ void DiskNode::SetNext(DiskNode *node) {
 
 ListPath* DiskNode::GetData() {
     return data;
+}
+
+void DiskNode::FillPath() {
+
+    FileManager *file = new FileManager;
+
+    json obj = file->ReadJson(path + "/metadata.json");
+
+    int size = obj["amount"].get<int>();
+
+    for (int i = 0; i < size; ++i) {
+
+        data->AddFinal(obj["Archivos"][to_string(i)]["name"], obj["Archivos"][to_string(i)]["path"]);
+
+    }
+
+    delete file;
+
 }
