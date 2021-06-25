@@ -6,4 +6,4 @@ set(CMAKE_CXX_FLAGS "-pthread")
 
 
 
-add_executable(Server main.cpp ServerSocket.cpp ServerSocket.h ListDiskNode.cpp ListDiskNode.h DiskNode.cpp DiskNode.h BytesConverter.cpp BytesConverter.h FileManager.cpp FileManager.h json.hpp tinyxml2.cpp tinyxml2.h NodePath.cpp NodePath.h ListPath.cpp ListPath.h)
+add_executable(Server main.cpp ServerSocket.cpp ServerSocket.h ListDiskNode.cpp ListDiskNode.h DiskNode.cpp DiskNode.h BytesConverter.cpp BytesConverter.h FileManager.cpp FileManager.h json.hpp tinyxml2.cpp tinyxml2.h NodePath.cpp NodePath.h ListPath.cpp ListPath.h NodeController.cpp NodeController.h)

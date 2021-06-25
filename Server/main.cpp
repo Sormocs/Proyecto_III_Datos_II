@@ -1,12 +1,8 @@
-#include <iostream>
-#include "BytesConverter.h"
-#include <bitset>
-#include <iomanip>
-#include "FileManager.h"
-#include "json.hpp"
+#include "NodeController.h"
+
 
 using namespace std;
-using json = nlohmann::json;
+
 
 
 int main() {
@@ -36,18 +32,9 @@ int main() {
 
     //std::string temp = file->Read("../RAID/Node1/metadata.txt");
 
-    json obj;
+    NodeController *controller = new NodeController();
 
-    obj["Archivo1"]["size"] = "2312";
+    controller->SaveFile("hola mundo", "hola");
 
-
-    std::ofstream o("../file.json");
-    o << std::setw(4) << obj << std::endl;
-
-    std::ifstream i("../file.json");
-    json j;
-    i >> j;
-
-    cout << j["Archivo1"]["size"];
 
 }
