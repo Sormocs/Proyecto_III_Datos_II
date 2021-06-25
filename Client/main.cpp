@@ -1,6 +1,9 @@
-#include <iostream>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+#include "Interface.h"
+
+int main(int argc, char *argv[]) {
+
+    Run(argc, argv);
+
     return 0;
 }
