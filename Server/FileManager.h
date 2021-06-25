@@ -7,6 +7,10 @@
 
 #include <iostream>
 #include <fstream>
+#include "json.hpp"
+#include <iomanip>
+
+using json = nlohmann::json;
 
 using namespace std;
 
@@ -16,6 +20,9 @@ public:
 
     void Write(std::string text, std::string path);
     std::string Read(std::string path);
+
+    void WriteJson(json obj, std::string path);
+    json ReadJson(std::string path);
 
 };
 

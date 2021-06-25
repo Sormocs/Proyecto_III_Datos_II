@@ -25,3 +25,20 @@ std::string FileManager::Read(std::string path) {
     return temp;
 
 }
+
+void FileManager::WriteJson(json obj, std::string path) {
+
+    std::ofstream o(path);
+    o << std::setw(4) << obj << std::endl;
+
+}
+
+json FileManager::ReadJson(std::string path) {
+
+    std::ifstream i(path);
+    json j;
+    i >> j;
+
+    return j;
+
+}
