@@ -102,3 +102,11 @@ string BytesConverter::GenerateString(std::vector<char> c) {
     return temp;
 
 }
+
+void BytesConverter::ResetText() {
+    this->text = "";
+    this->text1 = "";
+    this->text2 = "";
+    this->parity = "";
+
+}

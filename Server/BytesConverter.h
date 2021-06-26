@@ -30,6 +30,9 @@ public:
     std::vector<char> BytesToChar(std::vector<bitset<8>> b);
     std::string GenerateString(std::vector<char> c);
 
+    void ResetText();
+
+
 };
 
 

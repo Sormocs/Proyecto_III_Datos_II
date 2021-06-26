@@ -20,6 +20,7 @@ class FileManager {
 public:
 
     void Write(std::string text, std::string path);
+    void Delete(std::string path);
     std::string Read(std::string path);
 
     void WriteJson(json obj, std::string path);

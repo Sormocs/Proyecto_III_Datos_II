@@ -143,3 +143,9 @@ string FileManager::GetPath(std::string node) {
 
     return nodePort->GetText();
 }
+
+void FileManager::Delete(std::string path) {
+
+    remove(path.c_str());
+
+}

@@ -26,7 +26,10 @@ public:
 
     NodeController();
     void SaveFile(string text, string path);
+    void DeleteFile(string name);
     void ConfigMetada(string name, string path, int bytes);
+    void DeleteMetada(string name, string path, int bytes);
+
 
 
 
