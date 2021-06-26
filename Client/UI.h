@@ -1,18 +1,7 @@
 #include <gtk/gtk.h>
 
-#define CheckBit(data, n) ((data) & 1UL << (n)) ? 1 : 0
-#define SetBit(data, n) *(data) |= 1UL << (n)
-
 class UI {
 private:
-
-    /* Orden de bits en boole
-     *
-     * 0. ventana principal activa
-     * 1. ventana login activa
-     * 2. sesión iniciada
-     */
-    int8_t boole =  0;
 
     GtkBuilder      *builder = nullptr;
 
@@ -45,6 +34,14 @@ private:
     GtkTextBuffer   *textBuffer2 = nullptr;
     GtkButton       *addFileButton1 = nullptr;
 
+    GtkLabel        *activeLabRaid = nullptr;
+
+    GtkLabel        *activeLabDisc1 = nullptr;
+    GtkLabel        *activeLabDisc2 = nullptr;
+    GtkLabel        *activeLabDisc3 = nullptr;
+    GtkButton       *activeButDisc1 = nullptr;
+    GtkButton       *activeButDisc2 = nullptr;
+    GtkButton       *activeButDisc3 = nullptr;
 
 public:
     UI(int &argc, char *argv[]) {
@@ -92,15 +89,15 @@ public:
 
         addFileButton1 = GTK_BUTTON(gtk_builder_get_object(builder, "addFileButton1"));
 
+        activeButDisc1 = GTK_BUTTON(gtk_builder_get_object(builder, "activeButDisc1"));
+        activeButDisc2 = GTK_BUTTON(gtk_builder_get_object(builder, "activeButDisc2"));
+        activeButDisc3 = GTK_BUTTON(gtk_builder_get_object(builder, "activeButDisc3"));
+        activeLabDisc1 = GTK_LABEL(gtk_builder_get_object(builder, "activeLabDisc1"));
+        activeLabDisc2 = GTK_LABEL(gtk_builder_get_object(builder, "activeLabDisc2"));
+        activeLabDisc3 = GTK_LABEL(gtk_builder_get_object(builder, "activeLabDisc3"));
+        activeLabRaid = GTK_LABEL(gtk_builder_get_object(builder, "activeLabRaid"));
+
         gtk_builder_connect_signals(builder, NULL);
-    }
-
-    int8_t getBoole() const {
-        return boole;
-    }
-
-    void setBoole(int8_t boole) {
-        UI::boole = boole;
     }
 
     GtkBuilder *getBuilder() const {
@@ -309,5 +306,61 @@ public:
 
     void setAddFileButton1(GtkButton *addFileButton1) {
         UI::addFileButton1 = addFileButton1;
+    }
+
+    GtkLabel *getActiveLabRaid() const {
+        return activeLabRaid;
+    }
+
+    void setActiveLabRaid(GtkLabel *activeLabRaid) {
+        UI::activeLabRaid = activeLabRaid;
+    }
+
+    GtkLabel *getActiveLabDisc1() const {
+        return activeLabDisc1;
+    }
+
+    void setActiveLabDisc1(GtkLabel *activeLabDisc1) {
+        UI::activeLabDisc1 = activeLabDisc1;
+    }
+
+    GtkLabel *getActiveLabDisc2() const {
+        return activeLabDisc2;
+    }
+
+    void setActiveLabDisc2(GtkLabel *activeLabDisc2) {
+        UI::activeLabDisc2 = activeLabDisc2;
+    }
+
+    GtkLabel *getActiveLabDisc3() const {
+        return activeLabDisc3;
+    }
+
+    void setActiveLabDisc3(GtkLabel *activeLabDisc3) {
+        UI::activeLabDisc3 = activeLabDisc3;
+    }
+
+    GtkButton *getActiveButDisc1() const {
+        return activeButDisc1;
+    }
+
+    void setActiveButDisc1(GtkButton *activeButDisc1) {
+        UI::activeButDisc1 = activeButDisc1;
+    }
+
+    GtkButton *getActiveButDisc2() const {
+        return activeButDisc2;
+    }
+
+    void setActiveButDisc2(GtkButton *activeButDisc2) {
+        UI::activeButDisc2 = activeButDisc2;
+    }
+
+    GtkButton *getActiveButDisc3() const {
+        return activeButDisc3;
+    }
+
+    void setActiveButDisc3(GtkButton *activeButDisc3) {
+        UI::activeButDisc3 = activeButDisc3;
     }
 };
