@@ -4,9 +4,18 @@
 
 #include "ListDiskNode.h"
 
+/**
+ * @brief constructor from listdisknode
+ */
+
 ListDiskNode::ListDiskNode() {
     head = nullptr;
 }
+
+/**
+ * @brief add new node
+ * @param path string path
+ */
 
 void ListDiskNode::Add(std::string path) {
     DiskNode* node = new DiskNode(path);
@@ -20,6 +29,11 @@ void ListDiskNode::Add(std::string path) {
     }
 
 }
+
+/**
+ * @brief Delete node
+ * @param i int
+ */
 
 void ListDiskNode::DeleteNode(int i) {
 

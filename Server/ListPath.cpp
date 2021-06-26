@@ -4,11 +4,21 @@
 
 #include "ListPath.h"
 
+/**
+ * @brief constuctor
+ */
+
 ListPath::ListPath() {
 
     this->size = 0;
     this->head = nullptr;
 }
+
+/**
+ * @brief Add final element
+ * @param name string
+ * @param path string
+ */
 
 void ListPath::AddFinal(std::string name, std::string path) {
 

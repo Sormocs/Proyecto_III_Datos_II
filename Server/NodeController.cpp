@@ -4,6 +4,10 @@
 
 #include "NodeController.h"
 
+
+/**
+ * @brief constructor of NodeController
+ */
 NodeController::NodeController() {
 
     listNodes->Add(path1);
@@ -11,6 +15,12 @@ NodeController::NodeController() {
     listNodes->Add(path3);
 
 }
+
+/**
+ * @brief save file in Raid with disk nodes
+ * @param text string data
+ * @param path string name of file
+ */
 
 void NodeController::SaveFile(string text, string path) {
 
@@ -30,6 +40,11 @@ void NodeController::SaveFile(string text, string path) {
 
 }
 
+/**
+ * @brief Delete file in raid with disk nodes
+ * @param name string name of file
+ */
+
 void NodeController::DeleteFile( string name) {
 
     string dataFile = file->Read(path1 + "/" + name + ".txt");
@@ -45,6 +60,13 @@ void NodeController::DeleteFile( string name) {
     DeleteMetada(name,path3,bytes);
 
 }
+
+/**
+ * Config meta after added file in raid
+ * @param name string name of file
+ * @param path string path of disk
+ * @param bytes int bytes of file
+ */
 
 void NodeController::ConfigMetada(string name, string path, int bytes) {
 
@@ -63,6 +85,13 @@ void NodeController::ConfigMetada(string name, string path, int bytes) {
     file->WriteJson(obj, path + "/metadata.json");
 
 }
+
+/**
+ * Config meta after deleted file in raid
+ * @param name string name of file
+ * @param path string path of disk
+ * @param bytes int bytes of file
+ */
 
 void NodeController::DeleteMetada(string name, string path, int bytes) {
 
@@ -93,6 +122,11 @@ void NodeController::DeleteMetada(string name, string path, int bytes) {
     file->WriteJson(obj, path + "/metadata.json");
 
 }
+/**
+ * @brief Read one book with or without parity
+ * @param name strings name of file
+ * @return string
+ */
 
 string NodeController::ReadBook(string name) {
 
@@ -105,6 +139,12 @@ string NodeController::ReadBook(string name) {
     }
 
 }
+
+/**
+ * @brief Read alls file in raid
+ * @param name string, names of files
+ * @return json object
+ */
 
 json NodeController::ReadRaid(string name) {
 
@@ -129,6 +169,12 @@ json NodeController::ReadRaid(string name) {
     return temp;
 }
 
+/**
+ * @brief read book without parity
+ * @param name string name of file
+ * @return string
+ */
+
 string NodeController::WithoutParity(string name) {
 
     string firstPart = file->Read(path1 + "/" + name + ".txt");
@@ -141,6 +187,11 @@ string NodeController::WithoutParity(string name) {
     return textComplete;
 
 }
+/**
+ * @brief read book with parity
+ * @param name string name of file
+ * @return string
+ */
 
 string NodeController::ParityDisk1(string name) {
 
@@ -157,6 +208,12 @@ string NodeController::ParityDisk1(string name) {
 
 }
 
+/**
+ * @brief read book with parity
+ * @param name string name of file
+ * @return string
+ */
+
 string NodeController::ParityDisj2(string name) {
 
     string firstPart = file->Read(path1 + "/" + name + ".txt");
@@ -172,6 +229,13 @@ string NodeController::ParityDisj2(string name) {
 
 }
 
+/**
+ * @brief Check if the name of file have name searched
+ * @param search
+ * @param name
+ * @return boolean
+ */
+
 bool NodeController::CheckMemory(string search, string name) {
 
     auto check = name.find(search);
@@ -183,6 +247,10 @@ bool NodeController::CheckMemory(string search, string name) {
     }
 
 }
+/**
+ * @brief Check free space in disk
+ * @return json object
+ */
 
 json NodeController::CheckSpace() {
 

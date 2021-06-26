@@ -5,6 +5,12 @@
 
 #include "FileManager.h"
 
+/**
+ * @brief write txt
+ * @param text data
+ * @param path location
+ */
+
 void FileManager::Write(std::string text, std::string path) {
 
     std::ofstream ofs(path);
@@ -13,6 +19,11 @@ void FileManager::Write(std::string text, std::string path) {
     }
 
 }
+/**
+ * @brief Read txt
+ * @param path location
+ * @return string
+ */
 
 std::string FileManager::Read(std::string path) {
 
@@ -26,12 +37,24 @@ std::string FileManager::Read(std::string path) {
 
 }
 
+/**
+ * @brief write .json
+ * @param obj json
+ * @param path location
+ */
+
 void FileManager::WriteJson(json obj, std::string path) {
 
     std::ofstream o(path);
     o << std::setw(4) << obj << std::endl;
 
 }
+
+/**
+ * @brief Read .json
+ * @param path location
+ * @return json object
+ */
 
 json FileManager::ReadJson(std::string path) {
 
@@ -42,6 +65,10 @@ json FileManager::ReadJson(std::string path) {
     return j;
 
 }
+
+/**
+ * Generate xml file with params
+ */
 
 void FileManager::GenerateXML() {
 
@@ -105,6 +132,12 @@ void FileManager::GenerateXML() {
 
 }
 
+/**
+ * @brief Get ip from xml
+ * @param node string
+ * @return string
+ */
+
 string FileManager::GetIP(std::string node) {
 
     XMLDocument doc;
@@ -118,6 +151,12 @@ string FileManager::GetIP(std::string node) {
 
 }
 
+/**
+ * @brief Get port from xml
+ * @param node string
+ * @return string
+ */
+
 string FileManager::GetPort(std::string node) {
 
     XMLDocument doc;
@@ -129,6 +168,12 @@ string FileManager::GetPort(std::string node) {
 
     return nodePort->GetText();
 }
+
+/**
+ * @brief Get path from xml
+ * @param node string
+ * @return string
+ */
 
 string FileManager::GetPath(std::string node) {
 
@@ -143,6 +188,11 @@ string FileManager::GetPath(std::string node) {
 
     return nodePort->GetText();
 }
+
+/**
+ * @brief delete .txt
+ * @param path
+ */
 
 void FileManager::Delete(std::string path) {
 

@@ -1,11 +1,23 @@
 #include "BytesConverter.h"
 
+/**
+ * @brief Gets char of one string
+ * @param text string
+ * @return vector<char>
+ */
+
 vector<char> BytesConverter::GetChars(std::string text) {
 
     vector<char> v(text.begin(), text.end());
     return v;
 
 }
+
+/**
+ * @brief Get bytes of vector char
+ * @param v vector<char>
+ * @return vector<bitset<8>>
+ */
 
 vector<bitset<8>> BytesConverter::GetBytes(std::vector<char> v) {
 
@@ -21,6 +33,12 @@ vector<bitset<8>> BytesConverter::GetBytes(std::vector<char> v) {
     return b;
 
 }
+
+/**
+ * @brief convert bytes to string bytes
+ * @param b vector<bitset<8>>
+ * @return string
+ */
 
 string BytesConverter::BytestoString(std::vector<bitset<8>> b) {
 
@@ -38,6 +56,11 @@ string BytesConverter::BytestoString(std::vector<bitset<8>> b) {
 
 }
 
+/**
+ * @brief Generate parity with 2 text with xor parity
+ * @param bytes string
+ */
+
 void BytesConverter::GetParity(std::string bytes) {
 
     this->text1 = bytes.substr(0,bytes.length()/2);
@@ -52,6 +75,12 @@ void BytesConverter::GetParity(std::string bytes) {
     }
 
 }
+
+/**
+ * @brief get bytes to string
+ * @param text string
+ * @return vector<bitset<8>>
+ */
 
 vector<bitset<8>> BytesConverter::GetBytesChar(std::string text) {
 
@@ -72,6 +101,12 @@ vector<bitset<8>> BytesConverter::GetBytesChar(std::string text) {
     return b;
 }
 
+/**
+ * @brief Get char from  bytes
+ * @param b vector<bitset<8>>
+ * @return vector<char>
+ */
+
 vector<char> BytesConverter::BytesToChar(std::vector<bitset<8>> b) {
 
     vector<char> c;
@@ -89,6 +124,12 @@ vector<char> BytesConverter::BytesToChar(std::vector<bitset<8>> b) {
 
 }
 
+/**
+ * @brief Generate string from chars
+ * @param c vector<char>
+ * @return string
+ */
+
 string BytesConverter::GenerateString(std::vector<char> c) {
 
     string temp;
@@ -103,6 +144,10 @@ string BytesConverter::GenerateString(std::vector<char> c) {
 
 }
 
+/**
+ * @brief reset texts
+ */
+
 void BytesConverter::ResetText() {
     this->text = "";
     this->text1 = "";
@@ -110,6 +155,13 @@ void BytesConverter::ResetText() {
     this->parity = "";
 
 }
+
+/**
+ * @brief Get data disk when the disk is disable
+ * @param text1 string text
+ * @param text2 string parity
+ * @return string
+ */
 
 std::string BytesConverter::GetDisk(std::string text1, std::string text2) {
 

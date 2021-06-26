@@ -4,7 +4,10 @@
 
 #include "DiskNode.h"
 
-
+/**
+ * @brief constructor of disk node
+ * @param path string
+ */
 DiskNode::DiskNode(std::string path) {
 
     this->path = path;
@@ -14,26 +17,52 @@ DiskNode::DiskNode(std::string path) {
 
 }
 
+/**
+ * @brief get node back
+ * @return DiskNode*
+ */
+
 DiskNode* DiskNode::GetBack() {
     return back;
 }
+
+/**
+ * @brief get node next
+ * @return DiskNode*
+ */
 
 DiskNode* DiskNode::GetNext() {
     return next;
 }
 
+/**
+ * @brief Set back node
+ * @param node DiskNode*
+ */
 void DiskNode::SetBack(DiskNode *node) {
     back = node;
 }
+/**
+ * @brief Set back node
+ * @param node DiskNode*
+ */
 
 void DiskNode::SetNext(DiskNode *node) {
     next = node;
 }
 
+/**
+ * @brief Get data
+ * @return ListPath*
+ */
+
 ListPath* DiskNode::GetData() {
     return data;
 }
 
+/**
+ * @brief fill list path
+ */
 void DiskNode::FillPath() {
 
     FileManager *file = new FileManager;

@@ -10,12 +10,21 @@ ServerSocket::ServerSocket() {
 
 }
 
+/**
+ * @brief Get instance from server socket
+ * @return serversocket*
+ */
+
 ServerSocket *ServerSocket::getInstance() {
     if(instance == nullptr){
         instance = new ServerSocket;
     }
     return instance;
 }
+
+/**
+ * @brief start server
+ */
 
 void ServerSocket::Start() {listening = socket(AF_INET, SOCK_STREAM,0);
     if (listening == -1)
@@ -78,6 +87,11 @@ void ServerSocket::Start() {listening = socket(AF_INET, SOCK_STREAM,0);
 
     close(clientSocket);
 }
+
+/**
+ * @brief send msg
+ * @param msg string
+ */
 
 void ServerSocket::Send(std::string msg) {
     send(clientSocket, msg.c_str(),msg.length(),0);
