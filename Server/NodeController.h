@@ -41,6 +41,7 @@ public:
     string ParityDisj2(string name);
 
     bool CheckMemory(string search, string name);
+    json CheckSpace();
 
 };
 

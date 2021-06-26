@@ -183,3 +183,19 @@ bool NodeController::CheckMemory(string search, string name) {
     }
 
 }
+
+json NodeController::CheckSpace() {
+
+    json Node1 = file->ReadJson(path1 + "/metadata.json");
+    json Node2 = file->ReadJson(path2 + "/metadata.json");
+    json Node3 = file->ReadJson(path3 + "/metadata.json");
+
+    json temp;
+
+    temp["Node1"] = Node1["size"].get<int>() - Node1["reserved"].get<int>();
+    temp["Node2"] = Node2["size"].get<int>() - Node2["reserved"].get<int>();
+    temp["Node3"] = Node3["size"].get<int>() - Node3["reserved"].get<int>();
+
+    return temp;
+
+}
