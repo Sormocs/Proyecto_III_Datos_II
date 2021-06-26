@@ -10,7 +10,4 @@ int main() {
     NodeController *controller = new NodeController();
 
 
-
-    controller->DeleteFile("tes2");
-
 }

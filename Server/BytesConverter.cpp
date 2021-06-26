@@ -110,3 +110,21 @@ void BytesConverter::ResetText() {
     this->parity = "";
 
 }
+
+std::string BytesConverter::GetFirstParity(std::string text1, std::string text2) {
+
+    std::string temp = "";
+
+    for (int i = 0; i < text2.length(); ++i) {
+
+        if(text1.at(i) ^ text2.at(i)){
+            temp+='1';
+        } else{
+            temp+='0';
+        }
+
+    }
+
+    return temp;
+
+}

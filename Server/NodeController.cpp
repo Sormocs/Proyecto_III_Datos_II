@@ -82,7 +82,6 @@ void NodeController::DeleteMetada(string name, string path, int bytes) {
                 obj["Archivos"].erase(to_string(i));
                 newNum++;
             }
-
         }
     }
 
@@ -90,5 +89,80 @@ void NodeController::DeleteMetada(string name, string path, int bytes) {
     obj["reserved"] = newBytes-bytes;
 
     file->WriteJson(obj, path + "/metadata.json");
+
+}
+
+json NodeController::ReadBook(string name) {
+
+    if(this->activeDisk1 && this->activeDisk2){
+
+        return WithoutParity(name);
+
+    } else if(this->activeDisk2 == 0){
+
+    } else {
+
+    }
+
+}
+
+json NodeController::WithoutParity(string name) {
+
+    string firstPart = file->Read(path1 + "/" + name + ".txt");
+    string secondPart = file->Read(path2 + "/" + name + ".txt");
+
+    firstPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(firstPart)));
+    secondPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(secondPart)));
+
+    string textComplete = firstPart + secondPart;
+
+    json obj;
+
+    obj["text"] = textComplete;
+    obj["nameFile"] = name;
+
+    return obj;
+
+}
+
+json NodeController::ParityDisk1(string name) {
+
+    string firstPart = file->Read(path3 + "/" + name + ".txt");
+    string secondPart = file->Read(path2 + "/" + name + ".txt");
+
+    firstPart = converter->GetDisk(firstPart,secondPart);
+
+    firstPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(firstPart)));
+    secondPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(secondPart)));
+
+    string textComplete = firstPart + secondPart;
+
+    json obj;
+
+    obj["text"] = textComplete;
+    obj["nameFile"] = name;
+
+    return obj;
+
+}
+
+json NodeController::ParityDisj2(string name) {
+
+    string firstPart = file->Read(path1 + "/" + name + ".txt");
+    string secondPart = file->Read(path3 + "/" + name + ".txt");
+
+    secondPart = converter->GetDisk(firstPart,secondPart);
+
+    firstPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(firstPart)));
+    secondPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(secondPart)));
+
+    string textComplete = firstPart + secondPart;
+
+    json obj;
+
+    obj["text"] = textComplete;
+    obj["nameFile"] = name;
+
+    return obj;
 
 }

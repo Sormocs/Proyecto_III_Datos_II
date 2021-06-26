@@ -32,6 +32,8 @@ public:
 
     void ResetText();
 
+    std::string GetDisk(std::string text1, std::string text2);
+
 
 };
 
