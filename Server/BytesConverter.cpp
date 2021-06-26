@@ -111,7 +111,7 @@ void BytesConverter::ResetText() {
 
 }
 
-std::string BytesConverter::GetFirstParity(std::string text1, std::string text2) {
+std::string BytesConverter::GetDisk(std::string text1, std::string text2) {
 
     std::string temp = "";
 

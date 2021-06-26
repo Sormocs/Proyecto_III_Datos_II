@@ -13,7 +13,6 @@ using namespace  std;
 
 class BytesConverter {
 
-
 public:
 
     std::string parity = "";

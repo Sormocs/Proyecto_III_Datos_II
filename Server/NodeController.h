@@ -34,11 +34,13 @@ public:
     void ConfigMetada(string name, string path, int bytes);
     void DeleteMetada(string name, string path, int bytes);
 
-    json ReadBook(string name);
-    json WithoutParity(string name);
-    json ParityDisk1(string name);
-    json ParityDisj2(string name);
+    json ReadRaid(string name);
+    string ReadBook(string name);
+    string WithoutParity(string name);
+    string ParityDisk1(string name);
+    string ParityDisj2(string name);
 
+    bool CheckMemory(string search, string name);
 
 };
 

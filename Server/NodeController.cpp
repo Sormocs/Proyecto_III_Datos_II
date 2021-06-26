@@ -26,6 +26,8 @@ void NodeController::SaveFile(string text, string path) {
     ConfigMetada(path,  path2, converter->text1.length()/8);
     ConfigMetada(path,  path3, converter->text1.length()/8);
 
+    converter->ResetText();
+
 }
 
 void NodeController::DeleteFile( string name) {
@@ -92,77 +94,92 @@ void NodeController::DeleteMetada(string name, string path, int bytes) {
 
 }
 
-json NodeController::ReadBook(string name) {
+string NodeController::ReadBook(string name) {
 
     if(this->activeDisk1 && this->activeDisk2){
-
         return WithoutParity(name);
-
     } else if(this->activeDisk2 == 0){
-
+        return ParityDisj2(name);
     } else {
-
+        return ParityDisk1(name);
     }
 
 }
 
-json NodeController::WithoutParity(string name) {
+json NodeController::ReadRaid(string name) {
+
+    json obj = file->ReadJson(path3 + "/metadata.json");
+
+    json temp;
+
+    int size = obj["amount"].get<int>();
+
+    for (int i = 0; i < size; ++i) {
+
+        if(CheckMemory(name, obj["Archivos"][to_string(i)]["name"].get<string>())){
+            string data = ReadBook(name);
+            temp[to_string(i)]["name"] = obj["Archivos"][to_string(i)]["name"].get<string>();
+            temp[to_string(i)]["data"] = data;
+        }
+
+    }
+
+    temp["size"] = size;
+
+    return temp;
+}
+
+string NodeController::WithoutParity(string name) {
 
     string firstPart = file->Read(path1 + "/" + name + ".txt");
     string secondPart = file->Read(path2 + "/" + name + ".txt");
 
-    firstPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(firstPart)));
-    secondPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(secondPart)));
-
     string textComplete = firstPart + secondPart;
 
-    json obj;
+    textComplete = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(textComplete)));
 
-    obj["text"] = textComplete;
-    obj["nameFile"] = name;
-
-    return obj;
+    return textComplete;
 
 }
 
-json NodeController::ParityDisk1(string name) {
+string NodeController::ParityDisk1(string name) {
 
     string firstPart = file->Read(path3 + "/" + name + ".txt");
     string secondPart = file->Read(path2 + "/" + name + ".txt");
 
     firstPart = converter->GetDisk(firstPart,secondPart);
 
-    firstPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(firstPart)));
-    secondPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(secondPart)));
-
     string textComplete = firstPart + secondPart;
 
-    json obj;
+    textComplete = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(textComplete)));
 
-    obj["text"] = textComplete;
-    obj["nameFile"] = name;
-
-    return obj;
+    return textComplete;
 
 }
 
-json NodeController::ParityDisj2(string name) {
+string NodeController::ParityDisj2(string name) {
 
     string firstPart = file->Read(path1 + "/" + name + ".txt");
     string secondPart = file->Read(path3 + "/" + name + ".txt");
 
     secondPart = converter->GetDisk(firstPart,secondPart);
 
-    firstPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(firstPart)));
-    secondPart = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(secondPart)));
-
     string textComplete = firstPart + secondPart;
 
-    json obj;
+    textComplete = converter->GenerateString(converter->BytesToChar(converter->GetBytesChar(textComplete)));
 
-    obj["text"] = textComplete;
-    obj["nameFile"] = name;
+    return textComplete;
 
-    return obj;
+}
+
+bool NodeController::CheckMemory(string search, string name) {
+
+    auto check = name.find(search);
+
+    if(check != string::npos){
+        return 1;
+    } else {
+        return 0;
+    }
 
 }
