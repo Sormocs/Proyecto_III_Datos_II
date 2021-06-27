@@ -43,6 +43,10 @@ public:
     bool CheckMemory(string search, string name);
     json CheckSpace();
 
+    bool ChangeDisk1();
+    bool ChangeDisk2();
+
+
 };
 
 

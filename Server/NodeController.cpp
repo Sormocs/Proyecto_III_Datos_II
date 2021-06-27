@@ -267,3 +267,28 @@ json NodeController::CheckSpace() {
     return temp;
 
 }
+
+/**
+ * @brief change disk1
+ * @return bool
+ */
+
+bool NodeController::ChangeDisk1() {
+
+    this->activeDisk1 = !this->activeDisk1;
+
+    return this->activeDisk1;
+
+}
+
+/**
+ * @brief change disk2
+ * @return bool
+ */
+
+bool NodeController::ChangeDisk2() {
+
+    this->activeDisk2 = !this->activeDisk2;
+
+    return this->activeDisk2;
+}
