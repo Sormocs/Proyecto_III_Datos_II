@@ -1,25 +1,22 @@
 #include <iostream>
-#include "Huffman.h"
+#include <pthread.h>
+#include "ServerSocket.h"
 
-//int main() {
-//    std::cout << "Hello, World!" << std::endl;
-//    return 0;
-//}
+void RunServer(){
 
+    ServerSocket::getInstance()->Start();
 
+}
 
+int main(){
 
-// Driver code
-int main()
-{
+    std::thread RunS(RunServer);
 
-    char arr[] = { 'h','o','l','a' };
-    int freq[] = { 1 , 1 , 1 , 1 };
+    using namespace std::literals::chrono_literals;
+    std::this_thread::sleep_for(8.15s);
+    ServerSocket::getInstance()->Send("This#is#a#message");
 
-    int size = sizeof(arr) / sizeof(arr[0]);
-
-    //Huffman::getInstance()->HuffmanCodes(arr, freq, size);
-    Huffman::getInstance()->GetFreqs("hola");
+    RunS.join();
 
     return 0;
 }

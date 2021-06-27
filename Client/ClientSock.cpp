@@ -3,6 +3,7 @@
  * @brief Declaracion de los metodos de la clase ClientSock.
  */
 #include "ClientSock.h"
+#include "Huffman.h"
 
 ClientSock* ClientSock::instance = nullptr;
 
@@ -43,9 +44,9 @@ void ClientSock::Start() {
             //		Display response
             std::string temp = std::string(buf, bytesReceived);
             sleep(0.5);
-            this->received = temp;
+            this->received = Huffman::getInstance()->Decode(temp);
 
-            std::cout << "From Server:" << std::string(buf, bytesReceived) << std::endl;
+            std::cout << "From Server:" << received << std::endl;
         }
     }
     close(sock);
@@ -54,6 +55,7 @@ void ClientSock::Start() {
 
 using namespace std::literals::chrono_literals;
 void ClientSock::Send(std::string msg) {
+    std::string new_msg = Huffman::getInstance()->GetFreqs(msg);
     std::this_thread::sleep_for(0.15s);
     int sendRes = send(sock, msg.c_str(), msg.length(), 0);
     if (sendRes == -1) {

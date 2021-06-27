@@ -3,6 +3,7 @@
  * @brief Definicion de los metodos de la clase ServerSocket
  */
 #include "ServerSocket.h"
+#include "Huffman.h"
 
 ServerSocket* ServerSocket::instance = nullptr;
 
@@ -71,7 +72,8 @@ void ServerSocket::Start() {listening = socket(AF_INET, SOCK_STREAM,0);
             break;
         }
 
-        std::string received = std::string(buf,bytesReceived);
+        std::string received = Huffman::getInstance()->Decode(std::string(buf,bytesReceived));
+        std::cout << "From Client: " << received;
 
 
     }
@@ -80,5 +82,7 @@ void ServerSocket::Start() {listening = socket(AF_INET, SOCK_STREAM,0);
 }
 
 void ServerSocket::Send(std::string msg) {
-    send(clientSocket, msg.c_str(),msg.length(),0);
+
+    std::string new_msg = Huffman::getInstance()->GetFreqs(msg);
+    send(clientSocket, new_msg.c_str(),new_msg.length(),0);
 }
