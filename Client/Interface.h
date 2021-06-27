@@ -1,6 +1,9 @@
 #include "UI.h"
 #include <string>
 #include <thread>
+#include <fstream>
+
+#define RAID_SIZE 1073741824
 
 #define MAIN_WIN_BIT_INDEX 0
 #define LOGIN_WIN_BIT_INDEX 1
@@ -37,11 +40,11 @@ void DisconnectDisc1(GtkButton *button, gpointer user_data);
 void DisconnectDisc2(GtkButton *button, gpointer user_data);
 void DisconnectDisc3(GtkButton *button, gpointer user_data);
 
-void NameEdited(GtkEntry* entry, gpointer user_data) {
-    std::string temp = gtk_entry_get_text(ui->getLoginEntry1());
+void AddFile(GtkButton *button, gpointer user_data);
 
-    if (!temp.empty()) gtk_widget_set_sensitive((GtkWidget *)ui->getLoginBut1(), true);
-}
+void ReadFile();
+
+void NameEdited(GtkEntry* entry, gpointer user_data);
 
 void Exit();
 
@@ -54,6 +57,8 @@ void Run() {
     g_signal_connect(ui->getActiveButDisc1(), "clicked", G_CALLBACK(DisconnectDisc1), NULL);
     g_signal_connect(ui->getActiveButDisc2(), "clicked", G_CALLBACK(DisconnectDisc2), NULL);
     g_signal_connect(ui->getActiveButDisc3(), "clicked", G_CALLBACK(DisconnectDisc3), NULL);
+    g_signal_connect(ui->getFileComboBox1(), "move-active", G_CALLBACK(ReadFile), NULL);
+    g_signal_connect(ui->getAddFileButton1(), "clicked", G_CALLBACK(AddFile), NULL);
 
     gtk_notebook_set_current_page(ui->getNotebook1(), 0);
 
@@ -128,4 +133,32 @@ void DisconnectDisc3(GtkButton *button, gpointer user_data) {
     if (CheckBit(boole, DISC3_ACTIVE_BIT_INDEX)) gtk_button_set_label(ui->getActiveButDisc3(), "Desconectar");
 
     else gtk_button_set_label(ui->getActiveButDisc3(), "Conectar");
+}
+
+void NameEdited(GtkEntry* entry, gpointer user_data) {
+    std::string temp = gtk_entry_get_text(ui->getLoginEntry1());
+
+    if (!temp.empty()) gtk_widget_set_sensitive((GtkWidget *)ui->getLoginBut1(), true);
+}
+
+void AddFile(GtkButton *button, gpointer user_data) {
+    const char* temp = reinterpret_cast<const char *>(gtk_entry_get_text(ui->getFileNameEntry1()));
+
+    GtkTextIter start, end;
+    gtk_text_buffer_get_bounds(ui->getTextBuffer1(),&start, &end);
+
+    std::ofstream file;
+    file.open("../" + (std::string) temp +".txt");
+    file << gtk_text_buffer_get_text(ui->getTextBuffer1(), &start, &end, false);
+    file.close();
+    free((void *) temp);
+}
+
+void ReadFile() {
+    const gchar *buenas = "buenas";
+
+    std::ifstream file;
+//    file.open("../" +  + ".txt");
+    g_print("aaaaaaaaaaaaaaaaaaaa");
+    gtk_text_buffer_set_text(ui->getTextBuffer1(), buenas, 6);
 }

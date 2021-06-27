@@ -2,31 +2,15 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkListStore" id="fileList1">
-    <columns>
-      <!-- column-name Nombre -->
-      <column type="File Name"/>
-      <!-- column-name Tamaño -->
-      <column type="Size"/>
-      <!-- column-name Dirección -->
-      <column type="Path"/>
-    </columns>
-    <data>
-      <row/>
-      <row/>
-      <row/>
-    </data>
-  </object>
-  <object class="GtkTextBuffer" id="textBuffer1"/>
-  <object class="GtkTextBuffer" id="textBuffer2">
-    <property name="text" translatable="yes">Escriba aquí</property>
+  <object class="GtkTextBuffer" id="textBuffer1">
+    <property name="text" translatable="yes">Contenido</property>
   </object>
   <object class="GtkWindow" id="window">
     <property name="name">window</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">TEC File System</property>
     <property name="default_width">400</property>
-    <property name="default_height">200</property>
+    <property name="default_height">300</property>
     <property name="icon">../Icons/icon.png</property>
     <child type="titlebar">
       <placeholder/>
@@ -254,11 +238,14 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="dispNodo1">
+                          <object class="GtkLabel" id="dispNodo1">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">cargando datos...</property>
+                            <property name="selectable">True</property>
+                            <attributes>
+                              <attribute name="foreground" value="#88888a8a8585"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -266,11 +253,14 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="dispNodo2">
+                          <object class="GtkLabel" id="dispNodo2">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">cargando datos...</property>
+                            <property name="selectable">True</property>
+                            <attributes>
+                              <attribute name="foreground" value="#88888a8a8585"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -278,11 +268,14 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="dispNodo3">
+                          <object class="GtkLabel" id="dispNodo">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">cargando datos...</property>
+                            <property name="selectable">True</property>
+                            <attributes>
+                              <attribute name="foreground" value="#88888a8a8585"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -290,23 +283,13 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="usadoNodo1">
+                          <object class="GtkLabel" id="usadoNodo2">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="usadoNodo2">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">cargando datos...</property>
+                            <attributes>
+                              <attribute name="foreground" value="#88888a8a8585"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
@@ -314,11 +297,13 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="usadoNodo3">
+                          <object class="GtkLabel" id="usadoNodo3">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">cargando datos...</property>
+                            <attributes>
+                              <attribute name="foreground" value="#88888a8a8585"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
@@ -326,23 +311,10 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="totalNodo1">
+                          <object class="GtkLabel" id="totalNodo2">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">3</property>
-                            <property name="top_attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="totalNodo2">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">label</property>
                           </object>
                           <packing>
                             <property name="left_attach">3</property>
@@ -350,15 +322,36 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="totalNodo3">
+                          <object class="GtkLabel" id="totalNodo3">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="placeholder_text" translatable="yes">cargando datos...</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">label</property>
                           </object>
                           <packing>
                             <property name="left_attach">3</property>
                             <property name="top_attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">label</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">2</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="totalNodo1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">label</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">3</property>
+                            <property name="top_attach">1</property>
                           </packing>
                         </child>
                       </object>
@@ -420,6 +413,7 @@
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="row_spacing">5</property>
             <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkLabel">
@@ -584,6 +578,8 @@
               <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="row_spacing">5</property>
+                <property name="column_spacing">9</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
@@ -792,6 +788,8 @@
               <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="row_spacing">10</property>
+                <property name="column_spacing">10</property>
                 <property name="column_homogeneous">True</property>
                 <child>
                   <object class="GtkLabel">
@@ -806,12 +804,37 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTreeView" id="fileTree1">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="model">fileList1</property>
-                    <child internal-child="selection">
-                      <object class="GtkTreeSelection"/>
+                    <property name="can_focus">False</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkSearchEntry" id="fileSearchBox1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="primary_icon_name">edit-find-symbolic</property>
+                        <property name="primary_icon_activatable">False</property>
+                        <property name="primary_icon_sensitive">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBoxText" id="fileComboBox1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <items>
+                          <item translatable="yes">asd</item>
+                        </items>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
                   <packing>
@@ -820,22 +843,10 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTextView" id="fileContent1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="editable">False</property>
-                    <property name="buffer">textBuffer1</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">1</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Visualización</property>
+                    <property name="label" translatable="yes">Crear archivo</property>
                     <property name="width_chars">15</property>
                   </object>
                   <packing>
@@ -848,10 +859,33 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkEntry" id="fileNameEntry1">
+                      <object class="GtkGrid">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="placeholder_text" translatable="yes">Nombre del archivo</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <object class="GtkButton" id="addFileButton1">
+                            <property name="label" translatable="yes">Crear</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="fileNameEntry1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="max_width_chars">7</property>
+                            <property name="placeholder_text" translatable="yes">Nombre</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -859,45 +893,21 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkTextView" id="fileContent2">
+                      <object class="GtkTextView" id="fileContent1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="left_margin">4</property>
-                        <property name="buffer">textBuffer2</property>
+                        <property name="left_margin">8</property>
+                        <property name="buffer">textBuffer1</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="addFileButton1">
-                        <property name="label" translatable="yes">Añadir archivo</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">2</property>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">2</property>
+                    <property name="left_attach">1</property>
                     <property name="top_attach">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Crear archivo</property>
-                    <property name="width_chars">15</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">0</property>
                   </packing>
                 </child>
               </object>

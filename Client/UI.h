@@ -25,13 +25,12 @@ private:
     GtkEntry        *totalNodo1 = nullptr;
     GtkEntry        *totalNodo2 = nullptr;
     GtkEntry        *totalNodo3 = nullptr;
-    GtkTreeView     *fileTree1 = nullptr;
-    GtkListStore    *fileList1 = nullptr;
+
+    // pestaña de archivos
     GtkTextView     *fileContent1 = nullptr;
     GtkTextBuffer   *textBuffer1 = nullptr;
     GtkEntry        *fileNameEntry1 = nullptr;
-    GtkTextView     *fileContent2 = nullptr;
-    GtkTextBuffer   *textBuffer2 = nullptr;
+    GtkComboBox     *fileComboBox1 = nullptr;
     GtkButton       *addFileButton1 = nullptr;
 
     GtkLabel        *activeLabRaid = nullptr;
@@ -75,18 +74,10 @@ public:
         totalNodo2 = GTK_ENTRY(gtk_builder_get_object(builder, "totalNodo2"));
         totalNodo3 = GTK_ENTRY(gtk_builder_get_object(builder, "totalNodo3"));
 
-        fileTree1 = GTK_TREE_VIEW(gtk_builder_get_object(builder, "fileTree1"));
-
-        fileList1 = GTK_LIST_STORE(gtk_builder_get_object(builder, "fileList1"));
-
         fileContent1 = GTK_TEXT_VIEW(gtk_builder_get_object(builder, "fileContent1"));
         textBuffer1 = GTK_TEXT_BUFFER(gtk_builder_get_object(builder, "textBuffer1"));
 
         fileNameEntry1 = GTK_ENTRY(gtk_builder_get_object(builder, "fileNameEntry1"));
-
-        fileContent2 = GTK_TEXT_VIEW(gtk_builder_get_object(builder, "fileContent2"));
-        textBuffer2 = GTK_TEXT_BUFFER(gtk_builder_get_object(builder, "textBuffer2"));
-
         addFileButton1 = GTK_BUTTON(gtk_builder_get_object(builder, "addFileButton1"));
 
         activeButDisc1 = GTK_BUTTON(gtk_builder_get_object(builder, "activeButDisc1"));
@@ -244,22 +235,6 @@ public:
         UI::totalNodo3 = totalNodo3;
     }
 
-    GtkTreeView *getFileTree1() const {
-        return fileTree1;
-    }
-
-    void setFileTree1(GtkTreeView *fileTree1) {
-        UI::fileTree1 = fileTree1;
-    }
-
-    GtkListStore *getFileList1() const {
-        return fileList1;
-    }
-
-    void setFileList1(GtkListStore *fileList1) {
-        UI::fileList1 = fileList1;
-    }
-
     GtkTextView *getFileContent1() const {
         return fileContent1;
     }
@@ -282,22 +257,6 @@ public:
 
     void setFileNameEntry1(GtkEntry *fileNameEntry1) {
         UI::fileNameEntry1 = fileNameEntry1;
-    }
-
-    GtkTextView *getFileContent2() const {
-        return fileContent2;
-    }
-
-    void setFileContent2(GtkTextView *fileContent2) {
-        UI::fileContent2 = fileContent2;
-    }
-
-    GtkTextBuffer *getTextBuffer2() const {
-        return textBuffer2;
-    }
-
-    void setTextBuffer2(GtkTextBuffer *textBuffer2) {
-        UI::textBuffer2 = textBuffer2;
     }
 
     GtkButton *getAddFileButton1() const {
@@ -362,5 +321,13 @@ public:
 
     void setActiveButDisc3(GtkButton *activeButDisc3) {
         UI::activeButDisc3 = activeButDisc3;
+    }
+
+    GtkComboBox *getFileComboBox1() const {
+        return fileComboBox1;
+    }
+
+    void setFileComboBox1(GtkComboBox *fileComboBox1) {
+        UI::fileComboBox1 = fileComboBox1;
     }
 };
