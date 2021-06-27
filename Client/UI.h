@@ -16,23 +16,27 @@ private:
     // main window
     GtkWidget       *window = nullptr;
     GtkNotebook     *notebook1 = nullptr;
-    GtkEntry        *dispNodo1 = nullptr;
-    GtkEntry        *dispNodo2 = nullptr;
-    GtkEntry        *dispNodo3 = nullptr;
-    GtkEntry        *usadoNodo1 = nullptr;
-    GtkEntry        *usadoNodo2 = nullptr;
-    GtkEntry        *usadoNodo3 = nullptr;
-    GtkEntry        *totalNodo1 = nullptr;
-    GtkEntry        *totalNodo2 = nullptr;
-    GtkEntry        *totalNodo3 = nullptr;
+    GtkLabel        *dispNodo1 = nullptr;
+    GtkLabel        *dispNodo2 = nullptr;
+    GtkLabel        *dispNodo3 = nullptr;
+    GtkLabel        *usadoNodo1 = nullptr;
+    GtkLabel        *usadoNodo2 = nullptr;
+    GtkLabel        *usadoNodo3 = nullptr;
+    GtkLabel        *totalNodo1 = nullptr;
+    GtkLabel        *totalNodo2 = nullptr;
+    GtkLabel        *totalNodo3 = nullptr;
 
     // pestaña de archivos
     GtkTextView     *fileContent1 = nullptr;
     GtkTextBuffer   *textBuffer1 = nullptr;
+    GtkSearchEntry  *fileSearchBox1 = nullptr;
+    GtkButton       *openFileButton1 = nullptr;
     GtkEntry        *fileNameEntry1 = nullptr;
-    GtkComboBox     *fileComboBox1 = nullptr;
+    GtkComboBoxText *fileComboBox1 = nullptr;
     GtkButton       *addFileButton1 = nullptr;
+    GtkLabel        *fileOpenedLabel = nullptr;
 
+    // pestaña de raids
     GtkLabel        *activeLabRaid = nullptr;
 
     GtkLabel        *activeLabDisc1 = nullptr;
@@ -59,27 +63,30 @@ public:
 
         // ventana principal
         window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
-
         notebook1 = GTK_NOTEBOOK(gtk_builder_get_object(builder, "notebook1"));
+        dispNodo1 = GTK_LABEL(gtk_builder_get_object(builder, "dispNodo1"));
+        dispNodo2 = GTK_LABEL(gtk_builder_get_object(builder, "dispNodo2"));
+        dispNodo3 = GTK_LABEL(gtk_builder_get_object(builder, "dispNodo3"));
 
-        dispNodo1 = GTK_ENTRY(gtk_builder_get_object(builder, "dispNodo1"));
-        dispNodo2 = GTK_ENTRY(gtk_builder_get_object(builder, "dispNodo2"));
-        dispNodo3 = GTK_ENTRY(gtk_builder_get_object(builder, "dispNodo3"));
+        usadoNodo1 = GTK_LABEL(gtk_builder_get_object(builder, "usadoNodo1"));
+        usadoNodo2 = GTK_LABEL(gtk_builder_get_object(builder, "usadoNodo2"));
+        usadoNodo3 = GTK_LABEL(gtk_builder_get_object(builder, "usadoNodo3"));
 
-        usadoNodo1 = GTK_ENTRY(gtk_builder_get_object(builder, "usadoNodo1"));
-        usadoNodo2 = GTK_ENTRY(gtk_builder_get_object(builder, "usadoNodo2"));
-        usadoNodo3 = GTK_ENTRY(gtk_builder_get_object(builder, "usadoNodo3"));
+        totalNodo1 = GTK_LABEL(gtk_builder_get_object(builder, "totalNodo1"));
+        totalNodo2 = GTK_LABEL(gtk_builder_get_object(builder, "totalNodo2"));
+        totalNodo3 = GTK_LABEL(gtk_builder_get_object(builder, "totalNodo3"));
 
-        totalNodo1 = GTK_ENTRY(gtk_builder_get_object(builder, "totalNodo1"));
-        totalNodo2 = GTK_ENTRY(gtk_builder_get_object(builder, "totalNodo2"));
-        totalNodo3 = GTK_ENTRY(gtk_builder_get_object(builder, "totalNodo3"));
-
+        // archivero
+        fileSearchBox1 = GTK_SEARCH_ENTRY(gtk_builder_get_object(builder, "fileSearchBox1"));
+        openFileButton1 = GTK_BUTTON(gtk_builder_get_object(builder, "openFileButton1"));
         fileContent1 = GTK_TEXT_VIEW(gtk_builder_get_object(builder, "fileContent1"));
         textBuffer1 = GTK_TEXT_BUFFER(gtk_builder_get_object(builder, "textBuffer1"));
-
+        fileComboBox1 = GTK_COMBO_BOX_TEXT(gtk_builder_get_object(builder, "fileComboBox1"));
         fileNameEntry1 = GTK_ENTRY(gtk_builder_get_object(builder, "fileNameEntry1"));
         addFileButton1 = GTK_BUTTON(gtk_builder_get_object(builder, "addFileButton1"));
+        fileOpenedLabel = GTK_LABEL(gtk_builder_get_object(builder, "fileOpenedLabel"));
 
+        // administrador de discos
         activeButDisc1 = GTK_BUTTON(gtk_builder_get_object(builder, "activeButDisc1"));
         activeButDisc2 = GTK_BUTTON(gtk_builder_get_object(builder, "activeButDisc2"));
         activeButDisc3 = GTK_BUTTON(gtk_builder_get_object(builder, "activeButDisc3"));
@@ -163,75 +170,75 @@ public:
         UI::notebook1 = notebook1;
     }
 
-    GtkEntry *getDispNodo1() const {
+    GtkLabel *getDispNodo1() const {
         return dispNodo1;
     }
 
-    void setDispNodo1(GtkEntry *dispNodo1) {
+    void setDispNodo1(GtkLabel *dispNodo1) {
         UI::dispNodo1 = dispNodo1;
     }
 
-    GtkEntry *getDispNodo2() const {
+    GtkLabel *getDispNodo2() const {
         return dispNodo2;
     }
 
-    void setDispNodo2(GtkEntry *dispNodo2) {
+    void setDispNodo2(GtkLabel *dispNodo2) {
         UI::dispNodo2 = dispNodo2;
     }
 
-    GtkEntry *getDispNodo3() const {
+    GtkLabel *getDispNodo3() const {
         return dispNodo3;
     }
 
-    void setDispNodo3(GtkEntry *dispNodo3) {
+    void setDispNodo3(GtkLabel *dispNodo3) {
         UI::dispNodo3 = dispNodo3;
     }
 
-    GtkEntry *getUsadoNodo1() const {
+    GtkLabel *getUsadoNodo1() const {
         return usadoNodo1;
     }
 
-    void setUsadoNodo1(GtkEntry *usadoNodo1) {
+    void setUsadoNodo1(GtkLabel *usadoNodo1) {
         UI::usadoNodo1 = usadoNodo1;
     }
 
-    GtkEntry *getUsadoNodo2() const {
+    GtkLabel *getUsadoNodo2() const {
         return usadoNodo2;
     }
 
-    void setUsadoNodo2(GtkEntry *usadoNodo2) {
+    void setUsadoNodo2(GtkLabel *usadoNodo2) {
         UI::usadoNodo2 = usadoNodo2;
     }
 
-    GtkEntry *getUsadoNodo3() const {
+    GtkLabel *getUsadoNodo3() const {
         return usadoNodo3;
     }
 
-    void setUsadoNodo3(GtkEntry *usadoNodo3) {
+    void setUsadoNodo3(GtkLabel *usadoNodo3) {
         UI::usadoNodo3 = usadoNodo3;
     }
 
-    GtkEntry *getTotalNodo1() const {
+    GtkLabel *getTotalNodo1() const {
         return totalNodo1;
     }
 
-    void setTotalNodo1(GtkEntry *totalNodo1) {
+    void setTotalNodo1(GtkLabel *totalNodo1) {
         UI::totalNodo1 = totalNodo1;
     }
 
-    GtkEntry *getTotalNodo2() const {
+    GtkLabel *getTotalNodo2() const {
         return totalNodo2;
     }
 
-    void setTotalNodo2(GtkEntry *totalNodo2) {
+    void setTotalNodo2(GtkLabel *totalNodo2) {
         UI::totalNodo2 = totalNodo2;
     }
 
-    GtkEntry *getTotalNodo3() const {
+    GtkLabel *getTotalNodo3() const {
         return totalNodo3;
     }
 
-    void setTotalNodo3(GtkEntry *totalNodo3) {
+    void setTotalNodo3(GtkLabel *totalNodo3) {
         UI::totalNodo3 = totalNodo3;
     }
 
@@ -323,11 +330,35 @@ public:
         UI::activeButDisc3 = activeButDisc3;
     }
 
-    GtkComboBox *getFileComboBox1() const {
+    GtkComboBoxText *getFileComboBox1() const {
         return fileComboBox1;
     }
 
-    void setFileComboBox1(GtkComboBox *fileComboBox1) {
+    void setFileComboBox1(GtkComboBoxText *fileComboBox1) {
         UI::fileComboBox1 = fileComboBox1;
+    }
+
+    GtkSearchEntry *getFileSearchBox1() const {
+        return fileSearchBox1;
+    }
+
+    void setFileSearchBox1(GtkSearchEntry *fileSearchBox1) {
+        UI::fileSearchBox1 = fileSearchBox1;
+    }
+
+    GtkButton *getOpenFileButton1() const {
+        return openFileButton1;
+    }
+
+    void setOpenFileButton1(GtkButton *openFileButton1) {
+        UI::openFileButton1 = openFileButton1;
+    }
+
+    GtkLabel *getFileOpenedLabel() const {
+        return fileOpenedLabel;
+    }
+
+    void setFileOpenedLabel(GtkLabel *fileOpenedLabel) {
+        UI::fileOpenedLabel = fileOpenedLabel;
     }
 };

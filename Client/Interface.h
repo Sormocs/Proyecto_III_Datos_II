@@ -14,7 +14,7 @@
 #define DISC3_ACTIVE_BIT_INDEX 6
 
 #define CheckBit(data, n) ((data) & 1 << (n)) ? 1 : 0
-#define PrintBits(byte) for (int8_t i=(sizeof(int8_t)*8) - 1; i>=0; i--) { printf("%d", CheckBit((byte), (i))); }
+#define PrintBits(byte) { for (int8_t i=(sizeof(int8_t)*8) - 1; i>=0; i--) { printf("%d", CheckBit((byte), (i))); } printf("\n"); }
 #define SetBit(data, value, n) ((value)) ? ((data) | 1 << (n)) : ((data) & ~(1 << (n)))
 #define ToggleBit(data, n) (CheckBit((data), (n))) ? SetBit((data), false, (n)) : SetBit((data), true, (n))
 
@@ -42,7 +42,7 @@ void DisconnectDisc3(GtkButton *button, gpointer user_data);
 
 void AddFile(GtkButton *button, gpointer user_data);
 
-void ReadFile();
+void ReadFile(GtkButton *button, gpointer user_data);
 
 void NameEdited(GtkEntry* entry, gpointer user_data);
 
@@ -57,7 +57,7 @@ void Run() {
     g_signal_connect(ui->getActiveButDisc1(), "clicked", G_CALLBACK(DisconnectDisc1), NULL);
     g_signal_connect(ui->getActiveButDisc2(), "clicked", G_CALLBACK(DisconnectDisc2), NULL);
     g_signal_connect(ui->getActiveButDisc3(), "clicked", G_CALLBACK(DisconnectDisc3), NULL);
-    g_signal_connect(ui->getFileComboBox1(), "move-active", G_CALLBACK(ReadFile), NULL);
+    g_signal_connect(ui->getOpenFileButton1(), "clicked", G_CALLBACK(ReadFile), NULL);
     g_signal_connect(ui->getAddFileButton1(), "clicked", G_CALLBACK(AddFile), NULL);
 
     gtk_notebook_set_current_page(ui->getNotebook1(), 0);
@@ -100,8 +100,6 @@ void LoggedIn(GtkButton *button, gpointer user_data) {
     boole = SetBit(boole, true, MAIN_WIN_BIT_INDEX);
     boole = SetBit(boole, true, LOGGED_IN_BIT_INDEX);
 
-    PrintBits(boole);
-    printf("\n");
 }
 
 void DisconnectDisc1(GtkButton *button, gpointer user_data) {
@@ -145,7 +143,7 @@ void AddFile(GtkButton *button, gpointer user_data) {
     const char* temp = reinterpret_cast<const char *>(gtk_entry_get_text(ui->getFileNameEntry1()));
 
     GtkTextIter start, end;
-    gtk_text_buffer_get_bounds(ui->getTextBuffer1(),&start, &end);
+    gtk_text_buffer_get_bounds(ui->getTextBuffer1(), &start, &end);
 
     std::ofstream file;
     file.open("../" + (std::string) temp +".txt");
@@ -154,11 +152,10 @@ void AddFile(GtkButton *button, gpointer user_data) {
     free((void *) temp);
 }
 
-void ReadFile() {
-    const gchar *buenas = "buenas";
+void ReadFile(GtkButton *button, gpointer user_data) {
 
-    std::ifstream file;
-//    file.open("../" +  + ".txt");
-    g_print("aaaaaaaaaaaaaaaaaaaa");
-    gtk_text_buffer_set_text(ui->getTextBuffer1(), buenas, 6);
+//    std::ifstream file;
+//    file.open("../" + gtk_combo_box_text_get_active_text(ui->getFileComboBox1()) + ".txt");
+
+    g_print("%s", gtk_combo_box_text_get_active_text(ui->getFileComboBox1()));
 }

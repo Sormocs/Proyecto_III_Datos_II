@@ -156,6 +156,8 @@
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="row_spacing">10</property>
+                        <property name="column_spacing">10</property>
                         <property name="column_homogeneous">True</property>
                         <child>
                           <object class="GtkLabel">
@@ -314,7 +316,10 @@
                           <object class="GtkLabel" id="totalNodo2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">label</property>
+                            <property name="label" translatable="yes">1073741824</property>
+                            <attributes>
+                              <attribute name="foreground" value="#ffffffffffff"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">3</property>
@@ -325,7 +330,10 @@
                           <object class="GtkLabel" id="totalNodo3">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">label</property>
+                            <property name="label" translatable="yes">1073741824</property>
+                            <attributes>
+                              <attribute name="foreground" value="#ffffffffffff"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">3</property>
@@ -333,10 +341,13 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="usadoNodo1">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">label</property>
+                            <property name="label" translatable="yes">cargando datos...</property>
+                            <attributes>
+                              <attribute name="foreground" value="#88888a8a8585"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
@@ -347,7 +358,10 @@
                           <object class="GtkLabel" id="totalNodo1">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">label</property>
+                            <property name="label" translatable="yes">1073741824</property>
+                            <attributes>
+                              <attribute name="foreground" value="#ffffffffffff"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">3</property>
@@ -790,7 +804,6 @@
                 <property name="can_focus">False</property>
                 <property name="row_spacing">10</property>
                 <property name="column_spacing">10</property>
-                <property name="column_homogeneous">True</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
@@ -808,6 +821,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="orientation">vertical</property>
+                    <property name="spacing">10</property>
                     <child>
                       <object class="GtkSearchEntry" id="fileSearchBox1">
                         <property name="visible">True</property>
@@ -836,6 +850,30 @@
                         <property name="position">1</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">Abrir</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="fileOpenedLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -858,10 +896,12 @@
                   <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="column_spacing">10</property>
                     <child>
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="row_spacing">10</property>
                         <child>
                           <object class="GtkButton" id="addFileButton1">
                             <property name="label" translatable="yes">Crear</property>
@@ -893,11 +933,20 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkTextView" id="fileContent1">
+                      <object class="GtkScrolledWindow">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="left_margin">8</property>
-                        <property name="buffer">textBuffer1</property>
+                        <property name="shadow_type">in</property>
+                        <property name="min_content_width">313</property>
+                        <property name="min_content_height">170</property>
+                        <child>
+                          <object class="GtkTextView" id="fileContent1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="left_margin">8</property>
+                            <property name="buffer">textBuffer1</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
