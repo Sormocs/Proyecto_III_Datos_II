@@ -32,6 +32,7 @@ std::string FileManager::Read(std::string path) {
     std::ifstream openPort1;
     openPort1.open(path);
     openPort1 >> temp;
+    openPort1.close();
 
     return temp;
 
