@@ -51,13 +51,13 @@ void NodeController::DeleteFile( string name) {
 
     int bytes = dataFile.length()/8;
 
-    file->Delete(path1 + "/" + name + ".txt");
-    file->Delete(path2 + "/" + name + ".txt");
-    file->Delete(path3 + "/" + name + ".txt");
+    //file->Delete(path1 + "/" + name + ".txt");
+    //file->Delete(path2 + "/" + name + ".txt");
+    //file->Delete(path3 + "/" + name + ".txt");
 
     DeleteMetada(name,path1,bytes);
-    DeleteMetada(name,path2,bytes);
-    DeleteMetada(name,path3,bytes);
+    //DeleteMetada(name,path2,bytes);
+    //DeleteMetada(name,path3,bytes);
 
 }
 
@@ -97,29 +97,29 @@ void NodeController::DeleteMetada(string name, string path, int bytes) {
 
     json obj = file->ReadJson(path  + "/metadata.json");
 
+    json temp = obj;
+
     int num = obj["amount"].get<int>();
     int newBytes = obj["reserved"].get<int>();
 
     if(num == 1){
-        obj.erase("Archivos");
+        temp.erase("Archivos");
     }else {
+        temp.erase("Archivos");
         int newNum = 0;
         for (int i = 0; i < num; ++i) {
-
-            if (obj["Archivos"][to_string(i)]["name"] == name) {
-                obj["Archivos"].erase(to_string(i));
-            } else {
-                obj["Archivos"][to_string(newNum)] = obj["Archivos"][to_string(i)];
+            if (obj["Archivos"][to_string(i)]["name"] != name) {
+                temp["Archivos"][to_string(newNum)] = obj["Archivos"][to_string(i)];
                 obj["Archivos"].erase(to_string(i));
                 newNum++;
             }
         }
     }
 
-    obj["amount"] = num-1;
-    obj["reserved"] = newBytes-bytes;
+    temp["amount"] = num-1;
+    temp["reserved"] = newBytes-bytes;
 
-    file->WriteJson(obj, path + "/metadata.json");
+    file->WriteJson(temp, path + "/metadata.json");
 
 }
 /**
@@ -157,7 +157,7 @@ json NodeController::ReadRaid(string name) {
     for (int i = 0; i < size; ++i) {
 
         if(CheckMemory(name, obj["Archivos"][to_string(i)]["name"].get<string>())){
-            string data = ReadBook(name);
+            string data = ReadBook(obj["Archivos"][to_string(i)]["name"].get<string>());
             temp[to_string(i)]["name"] = obj["Archivos"][to_string(i)]["name"].get<string>();
             temp[to_string(i)]["data"] = data;
         }
@@ -275,6 +275,8 @@ json NodeController::CheckSpace() {
 
 bool NodeController::ChangeDisk1() {
 
+    this->activeDisk2 = true;
+
     this->activeDisk1 = !this->activeDisk1;
 
     return this->activeDisk1;
@@ -287,6 +289,8 @@ bool NodeController::ChangeDisk1() {
  */
 
 bool NodeController::ChangeDisk2() {
+
+    this->activeDisk1 = true;
 
     this->activeDisk2 = !this->activeDisk2;
 
