@@ -5,7 +5,6 @@
 #include "ClientSock.h"
 
 
-
 ClientSock* ClientSock::instance = nullptr;
 
 ClientSock *ClientSock::getInstance() {
@@ -45,10 +44,15 @@ void ClientSock::Start() {
             //		Display response
             std::string temp = std::string(buf, bytesReceived);
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            this->received = Huffman::getInstance()->Decode(temp);
+//            this->received = Huffman::getInstance()->Decode(temp);
+
+            this->received = std::string(buf, bytesReceived);
 
             std::cout << "From Server:" << received << std::endl;
-            jsonFile = json::parse(received);
+
+            try {
+                jsonFile = json::parse(received);
+            } catch (std::exception) { }
 
 
             if (received == "end") {
@@ -62,9 +66,10 @@ void ClientSock::Start() {
 
 using namespace std::literals::chrono_literals;
 void ClientSock::Send(std::string msg) {
-    std::string new_msg = Huffman::getInstance()->GetFreqs(msg);
+//    std::string new_msg = Huffman::getInstance()->GetFreqs(msg);
+    this->received = std::string();
     std::this_thread::sleep_for(0.15s);
-    int sendRes = send(sock, new_msg.c_str(), new_msg.length(), 0);
+    int sendRes = send(sock, msg.c_str(),  msg.length(), 0);
     if (sendRes == -1) {
         std::cout << "Send message failed" << std::endl;
     }

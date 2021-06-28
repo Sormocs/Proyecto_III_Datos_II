@@ -12,7 +12,7 @@
 #include <string.h>
 #include <thread>
 #include "UI.h"
-#include "Huffman.h"
+//#include "Huffman.h"
 
 #pragma once
 
@@ -28,7 +28,6 @@ private:
     std::string ipAddress = "127.0.0.1";
     char buf[4092];
     static ClientSock *instance;
-    std::string received;
     ClientSock() = default;
 
 public:
@@ -37,6 +36,7 @@ public:
     void Send(std::string msg);
     std::string GetReceived();
 
+    std::string received;
     json jsonFile = json();
 };
 
