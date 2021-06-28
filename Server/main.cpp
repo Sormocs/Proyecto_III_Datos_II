@@ -1,6 +1,8 @@
 #include <iostream>
 #include <pthread.h>
 #include "ServerSocket.h"
+#include "NodeController.h"
+#include "thread"
 
 void RunServer(){
 
@@ -10,11 +12,11 @@ void RunServer(){
 
 int main(){
 
-    std::thread RunS(RunServer);
+//    NodeController* asd = new NodeController;
+//
+//    printf("%s", asd->CheckSpace().dump().c_str());
 
-    using namespace std::literals::chrono_literals;
-    std::this_thread::sleep_for(8.15s);
-    ServerSocket::getInstance()->Send("This#is#a#message");
+    std::thread RunS(RunServer);
 
     RunS.join();
 

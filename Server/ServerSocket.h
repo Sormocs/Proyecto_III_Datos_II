@@ -12,7 +12,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <string>
-#include "thread"
+#include "NodeController.h"
 
 #pragma once
 
@@ -33,6 +33,8 @@ private:
     char buf[4096];
 
     static ServerSocket *instance;
+
+    NodeController* nodeController = nullptr;
 
     ServerSocket();
 
