@@ -37,7 +37,7 @@ void ClientSock::Start() {
         int bytesReceived = recv(sock, buf, 4096, 0);
         if (bytesReceived == -1)
         {
-            std::cout << "Error getting response" << std::endl;
+//            std::cout << "Error getting response" << std::endl;
         }
         else {
 
@@ -48,7 +48,7 @@ void ClientSock::Start() {
 
             this->received = std::string(buf, bytesReceived);
 
-            std::cout << "From Server:" << received << std::endl;
+//            std::cout << "From Server:" << received << std::endl;
 
             try {
                 jsonFile = json::parse(received);
@@ -71,7 +71,7 @@ void ClientSock::Send(std::string msg) {
     std::this_thread::sleep_for(0.15s);
     int sendRes = send(sock, msg.c_str(),  msg.length(), 0);
     if (sendRes == -1) {
-        std::cout << "Send message failed" << std::endl;
+//        std::cout << "Send message failed" << std::endl;
     }
 }
 

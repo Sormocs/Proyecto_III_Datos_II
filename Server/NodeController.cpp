@@ -160,8 +160,8 @@ json NodeController::ReadRaid(string name) {
 
         if(CheckMemory(name, obj["Archivos"][to_string(i)]["name"].get<string>())){
             string data = ReadBook(obj["Archivos"][to_string(i)]["name"].get<string>());
-            temp[to_string(i)]["name"] = obj["Archivos"][to_string(i)]["name"].get<string>();
-            temp[to_string(i)]["data"] = data;
+            temp[to_string(newSize)]["name"] = obj["Archivos"][to_string(i)]["name"].get<string>();
+            temp[to_string(newSize)]["data"] = data;
             newSize++;
         }
 

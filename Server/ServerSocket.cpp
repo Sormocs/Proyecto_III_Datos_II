@@ -85,29 +85,30 @@ void ServerSocket::Start() {listening = socket(AF_INET, SOCK_STREAM,0);
         std::string received = std::string(buf,bytesReceived);
         std::cout << "From Client: " << received;
 
-        if (received == "end") return;
+        if (received == "end") {
+            Send("end");
+            break;
+        }
 
         json jReceived = json::parse(received);
 
         if (jReceived["DISCONNECT"].get<std::string>() != "NO") {
             if (jReceived["DISCONNECT"].get<std::string>() == "DISC1") {
 
-                json temporal = json();
-
                 if (nodeController->ChangeDisk1())
-                    temporal["DISC_STATE"]["DISC1"] = true;
+                    Send("connected");
 
                 else
-                    temporal["DISC_STATE"]["DISC1"] = false;
-
-                Send(temporal.dump());
+                    Send("disconnected");
             }
 
             else if (jReceived["DISCONNECT"].get<std::string>() == "DISC2") {
 
-                json temporal = json();
-                temporal["DISC_STATE"]["DISC2"] = nodeController->ChangeDisk2();
-                Send("disconnected");
+                if (nodeController->ChangeDisk2())
+                    Send("connected");
+
+                else
+                    Send("disconnected");
             }
 
         } if (jReceived["ADD_FILE"]["NAME"].get<std::string>() != "NO") {

@@ -12,8 +12,6 @@ void RunClient(){
 
 int main(int argc, char *argv[]) {
 
-
-
     std::thread RunGraphics(Graphics, argc, argv);
 
     std::thread RunC(RunClient);
