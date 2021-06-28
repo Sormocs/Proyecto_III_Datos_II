@@ -1,7 +1,7 @@
 /**
  * @file StrChar.h
  * @author Sergio MB
- * @brief Contiene la declaracion de metodos de la lista enlazada que cuenta caracteres y frecuencia
+ * @brief Contiene la declaración de métodos de la lista enlazada que cuenta caracteres y frecuencia
  */
 
 #include <iostream>
