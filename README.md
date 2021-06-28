@@ -20,10 +20,10 @@ Para eliminar un archivo lo único que debemos hacer es indicar el nombre del ar
 
 Podemos hacerlo de 2 maneras, buscando un único archivo con su nombre o en su defecto podemos insetar una palabra y el node controller buscará cuales archivos contiene dicha palabra para poder leerlos.
 
-## Desactivar discos
+## Desactivar discos.
 
 La aplicación está diseñada para el soporte de errores por lo cual se implementó un sistema donde se pueden desconectar los discos, en dicho sistema si se desactiva algún disco se hará uso de la paridad almacenada en otro disco para poder recuperar información.
 
-## Mostrar capacidad de los discos
+## Mostrar capacidad de los discos.
 
 Se podrá observar la cantidad de espacio disponible, total y usado de los discos.
