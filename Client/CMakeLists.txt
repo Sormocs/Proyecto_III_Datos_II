@@ -4,8 +4,13 @@ project(Client)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "-pthread")
 
-link_directories(SFML_LIBRARY_DIR)
-include_directories(SFML_INCLUDE_DIR)
+find_package(PkgConfig)
+pkg_check_modules(GTKMM gtkmm-3.0)
 
-add_executable(Client main.cpp ClientSock.cpp ClientSock.h GUI.cpp GUI.h SFMLTools.h Button.cpp Button.h HuffDict.cpp HuffDict.h Huffman.cpp Huffman.h StrChar.cpp StrChar.h json.hpp)
-target_link_libraries(Client sfml-graphics sfml-window sfml-system)
+include_directories(${GTKMM_INCLUDE_DIRS})
+link_directories(${GTKMM_LIBRARY_DIRS})
+
+set(SOURCE_FILES main.cpp MainWindow.cpp MainWindow.h)
+
+add_executable(Client main.cpp ClientSock.cpp ClientSock.h UI.h Interface.h)
+target_link_libraries(${CMAKE_PROJECT_NAME} ${GTKMM_LIBRARIES})
