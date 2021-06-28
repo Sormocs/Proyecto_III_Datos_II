@@ -11,6 +11,8 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <thread>
+#include "UI.h"
+#include "Huffman.h"
 
 #pragma once
 
@@ -34,6 +36,8 @@ public:
     void Start();
     void Send(std::string msg);
     std::string GetReceived();
+
+    json jsonFile = json();
 };
 
 

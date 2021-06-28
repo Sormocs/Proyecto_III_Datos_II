@@ -1,4 +1,3 @@
-#include "ClientSock.h"
 #include "Interface.h"
 
 void Graphics(int argc, char *argv[]) {

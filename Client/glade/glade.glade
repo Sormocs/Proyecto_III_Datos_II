@@ -2,9 +2,8 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkTextBuffer" id="textBuffer1">
-    <property name="text" translatable="yes">Contenido</property>
-  </object>
+  <object class="GtkTextBuffer" id="textBuffer1"/>
+  <object class="GtkTextBuffer" id="textBuffer2"/>
   <object class="GtkWindow" id="window">
     <property name="name">window</property>
     <property name="can_focus">False</property>
@@ -131,6 +130,7 @@
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="row_spacing">10</property>
             <child>
               <object class="GtkGrid">
                 <property name="visible">True</property>
@@ -209,7 +209,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Disponible</property>
+                            <property name="label" translatable="yes">Disponible (bytes)</property>
                             <property name="width_chars">11</property>
                           </object>
                           <packing>
@@ -221,7 +221,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Usado</property>
+                            <property name="label" translatable="yes">Usado (bytes)</property>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>
@@ -232,7 +232,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Total</property>
+                            <property name="label" translatable="yes">Total (bytes)</property>
                           </object>
                           <packing>
                             <property name="left_attach">3</property>
@@ -270,7 +270,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="dispNodo">
+                          <object class="GtkLabel" id="dispNodo3">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">cargando datos...</property>
@@ -289,6 +289,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">cargando datos...</property>
+                            <property name="selectable">True</property>
                             <attributes>
                               <attribute name="foreground" value="#88888a8a8585"/>
                             </attributes>
@@ -303,6 +304,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">cargando datos...</property>
+                            <property name="selectable">True</property>
                             <attributes>
                               <attribute name="foreground" value="#88888a8a8585"/>
                             </attributes>
@@ -317,6 +319,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">1073741824</property>
+                            <property name="selectable">True</property>
                             <attributes>
                               <attribute name="foreground" value="#ffffffffffff"/>
                             </attributes>
@@ -331,6 +334,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">1073741824</property>
+                            <property name="selectable">True</property>
                             <attributes>
                               <attribute name="foreground" value="#ffffffffffff"/>
                             </attributes>
@@ -345,6 +349,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">cargando datos...</property>
+                            <property name="selectable">True</property>
                             <attributes>
                               <attribute name="foreground" value="#88888a8a8585"/>
                             </attributes>
@@ -359,6 +364,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">1073741824</property>
+                            <property name="selectable">True</property>
                             <attributes>
                               <attribute name="foreground" value="#ffffffffffff"/>
                             </attributes>
@@ -405,6 +411,18 @@
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="updateNodesButton">
+                <property name="label" translatable="yes">Actualizar</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
               </packing>
             </child>
           </object>
@@ -805,15 +823,86 @@
                 <property name="row_spacing">10</property>
                 <property name="column_spacing">10</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Archivero</property>
-                    <property name="width_chars">9</property>
+                    <property name="row_spacing">10</property>
+                    <property name="column_spacing">10</property>
+                    <child>
+                      <object class="GtkGrid">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="row_spacing">10</property>
+                        <property name="column_spacing">9</property>
+                        <property name="column_homogeneous">True</property>
+                        <child>
+                          <object class="GtkEntry" id="fileNameEntry1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="max_width_chars">7</property>
+                            <property name="placeholder_text" translatable="yes">Nombre</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="addFileButton1">
+                            <property name="label" translatable="yes">Crear</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="shadow_type">in</property>
+                        <property name="min_content_width">313</property>
+                        <property name="min_content_height">354</property>
+                        <child>
+                          <object class="GtkTextView" id="fileContent1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="left_margin">8</property>
+                            <property name="right_margin">8</property>
+                            <property name="top_margin">8</property>
+                            <property name="bottom_margin">8</property>
+                            <property name="buffer">textBuffer1</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="fileCreatedLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">1</property>
                   </packing>
                 </child>
                 <child>
@@ -823,12 +912,35 @@
                     <property name="orientation">vertical</property>
                     <property name="spacing">10</property>
                     <child>
-                      <object class="GtkSearchEntry" id="fileSearchBox1">
+                      <object class="GtkGrid">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="primary_icon_name">edit-find-symbolic</property>
-                        <property name="primary_icon_activatable">False</property>
-                        <property name="primary_icon_sensitive">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="column_spacing">6</property>
+                        <child>
+                          <object class="GtkSearchEntry" id="fileSearchBox1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="primary_icon_name">edit-find-symbolic</property>
+                            <property name="primary_icon_activatable">False</property>
+                            <property name="primary_icon_sensitive">False</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="fileSearchButton">
+                            <property name="label" translatable="yes">Buscar</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -840,9 +952,6 @@
                       <object class="GtkComboBoxText" id="fileComboBox1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <items>
-                          <item translatable="yes">asd</item>
-                        </items>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -851,11 +960,35 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton">
-                        <property name="label" translatable="yes">Abrir</property>
+                      <object class="GtkGrid">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="column_spacing">10</property>
+                        <property name="column_homogeneous">True</property>
+                        <child>
+                          <object class="GtkButton" id="openFileButton1">
+                            <property name="label" translatable="yes">Abrir</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="deleteSelectedFileButton">
+                            <property name="label" translatable="yes">Borrar</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -874,9 +1007,51 @@
                         <property name="position">3</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="shadow_type">in</property>
+                        <property name="min_content_height">266</property>
+                        <child>
+                          <object class="GtkTextView" id="openFileContent">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="buffer">textBuffer2</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="width_chars">1</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="width_chars">1</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
                     <property name="top_attach">1</property>
                   </packing>
                 </child>
@@ -888,81 +1063,42 @@
                     <property name="width_chars">15</property>
                   </object>
                   <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Archivero</property>
+                    <property name="width_chars">9</property>
+                  </object>
+                  <packing>
                     <property name="left_attach">1</property>
                     <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkGrid">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="column_spacing">10</property>
-                    <child>
-                      <object class="GtkGrid">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="row_spacing">10</property>
-                        <child>
-                          <object class="GtkButton" id="addFileButton1">
-                            <property name="label" translatable="yes">Crear</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="fileNameEntry1">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="max_width_chars">7</property>
-                            <property name="placeholder_text" translatable="yes">Nombre</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkScrolledWindow">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="shadow_type">in</property>
-                        <property name="min_content_width">313</property>
-                        <property name="min_content_height">170</property>
-                        <child>
-                          <object class="GtkTextView" id="fileContent1">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="left_margin">8</property>
-                            <property name="buffer">textBuffer1</property>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">1</property>
-                  </packing>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
               </packing>
             </child>
           </object>
