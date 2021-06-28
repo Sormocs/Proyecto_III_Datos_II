@@ -1,8 +1,14 @@
 # Proyecto_III_Datos_II
 
+## Descripción
+
 TEC file system consiste en simular de un RAID donde los archivos a se almacenan en un disco (en este caso una carpeta) y se divide en partes para conseguir una paridad y poder recuperar la información si alguno de los discos llega a fallar.
 
-Para el desarrollo de la aplicación se utilizaron varias bibliotecas en las cuales están json for modern donde se puede descargar de https://github.com/nlohmann/json, tinyxml2 para el uso del xml el cual la podemos descargar de https://github.com/leethomason/tinyxml2, además de usar gtkmm y gtk para el desarrollo de la GUI el cual se puede descargar e instalar en linux con los siguientes comandos sudo apt install libgtkmm-3.0-dev y sudo apt install libgstreamermm-1.0-dev, ejecutas directamente en la consola de comandos. 
+## Bibliotecas a instalar.
+
+Para el desarrollo de la aplicación se utilizaron varias bibliotecas en las cuales están json for modern donde se puede descargar de https://github.com/nlohmann/json, tinyxml2 para el uso del xml el cual la podemos descargar de https://github.com/leethomason/tinyxml2, además de usar gtkmm y gtk para el desarrollo de la GUI el cual se puede descargar e instalar en linux con los siguientes comandos sudo apt install libgtkmm-3.0-dev y sudo apt install libgstreamermm-1.0-dev, ejecutas directamente en la consola de comandos.
+
+## Ejecucción
 
 Con el fin de ejecutar el programa en primer lugar deberemos ejecutar el servidor, donde se controlan la parte de los archivos y los nodos discos, posteriormente ejecutaremos el cliente donde se encuentra la interfaz de usuario.
 
