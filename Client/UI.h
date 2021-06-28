@@ -119,7 +119,7 @@ public:
         activeLabDisc3 = GTK_LABEL(gtk_builder_get_object(builder, "activeLabDisc3"));
         activeLabRaid = GTK_LABEL(gtk_builder_get_object(builder, "activeLabRaid"));
 
-        gtk_builder_connect_signals(builder, NULL);
+        gtk_builder_connect_signals(builder, nullptr);
     }
 
     /**

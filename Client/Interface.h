@@ -141,7 +141,13 @@ void LoggedIn(GtkButton *button, gpointer user_data) {
 
 void UpdateNodes(GtkButton *button, gpointer user_data) {
     json temp = json();
-    temp["UPDATE"] = "Nodes";
+    temp["DISCONNECT"] = "NO";
+    temp["ADD_FILE"]["NAME"] = "NO";
+    temp["ADD_FILE"]["CONTENT"] = "NO";
+    temp["READ_FILE"] = "NO";
+    temp["SEARCH_FILE"] = "NO";
+    temp["DELETE_FILE"] = "NO";
+    temp["UPDATE"] = true;
     ClientSock::getInstance()->Send(temp.dump());
 
     Wait();
@@ -174,6 +180,12 @@ void DisconnectDisc1(GtkButton *button, gpointer user_data) {
     // intercambia conexión del disco
     json temp = json();
     temp["DISCONNECT"] = "DISC1";
+    temp["ADD_FILE"]["NAME"] = "NO";
+    temp["ADD_FILE"]["CONTENT"] = "NO";
+    temp["READ_FILE"] = "NO";
+    temp["SEARCH_FILE"] = "NO";
+    temp["DELETE_FILE"] = "NO";
+    temp["UPDATE"] = false;
     ClientSock::getInstance()->Send(temp.dump());
 
     WaitDisconnectDisc1();
@@ -198,7 +210,7 @@ void WaitDisconnectDisc1() {
         boole = SetBit(boole, false, DISC1_ACTIVE_BIT_INDEX);
 
     } else {
-        boole = SetBit(boole, ClientSock::getInstance()->jsonFile["DISC1_STATE"].get<bool>(), DISC1_ACTIVE_BIT_INDEX);
+        boole = SetBit(boole, ClientSock::getInstance()->jsonFile["DISC_STATE"]["DISC1"].get<bool>(), DISC1_ACTIVE_BIT_INDEX);
     }
     ClientSock::getInstance()->jsonFile = nullptr;
 }
@@ -208,6 +220,13 @@ void DisconnectDisc2(GtkButton *button, gpointer user_data) {
     // intercambia conexión del disco
     json temp = json();
     temp["DISCONNECT"] = "DISC2";
+    temp["DISC_STATE"] = "NO";
+    temp["ADD_FILE"]["NAME"] = "NO";
+    temp["ADD_FILE"]["CONTENT"] = "NO";
+    temp["READ_FILE"] = "NO";
+    temp["SEARCH_FILE"] = "NO";
+    temp["DELETE_FILE"] = "NO";
+    temp["UPDATE"] = false;
     ClientSock::getInstance()->Send(temp.dump());
 
     WaitDisconnectDisc2();
@@ -232,7 +251,7 @@ void WaitDisconnectDisc2() {
         boole = SetBit(boole, false, DISC2_ACTIVE_BIT_INDEX);
 
     } else {
-        boole = SetBit(boole, ClientSock::getInstance()->jsonFile["DISC2_STATE"].get<bool>(), DISC2_ACTIVE_BIT_INDEX);
+        boole = SetBit(boole, ClientSock::getInstance()->jsonFile["DISC_STATE"]["DISC2"].get<bool>(), DISC2_ACTIVE_BIT_INDEX);
     }
     ClientSock::getInstance()->jsonFile = nullptr;
 }
@@ -241,7 +260,14 @@ void DisconnectDisc3(GtkButton *button, gpointer user_data) {
 
     // intercambia conexión del disco
     json temp = json();
-    temp["DISCONNECT"] = "DISC3" ;
+    temp["DISCONNECT"] = "DISC3";
+    temp["DISC_STATE"] = "NO";
+    temp["ADD_FILE"]["NAME"] = "NO";
+    temp["ADD_FILE"]["CONTENT"] = "NO";
+    temp["READ_FILE"] = "NO";
+    temp["SEARCH_FILE"] = "NO";
+    temp["DELETE_FILE"] = "NO";
+    temp["UPDATE"] = false;
     ClientSock::getInstance()->Send(temp.dump());
 
     WaitDisconnectDisc3();
@@ -266,7 +292,7 @@ void WaitDisconnectDisc3() {
         boole = SetBit(boole, false, DISC3_ACTIVE_BIT_INDEX);
 
     } else {
-        boole = SetBit(boole, ClientSock::getInstance()->jsonFile["DISC3_STATE"].get<bool>(), DISC3_ACTIVE_BIT_INDEX);
+        boole = SetBit(boole, ClientSock::getInstance()->jsonFile["DISC_STATE"]["DISC3"].get<bool>(), DISC3_ACTIVE_BIT_INDEX);
     }
     ClientSock::getInstance()->jsonFile = nullptr;
 }
@@ -286,25 +312,33 @@ void AddFile(GtkButton *button, gpointer user_data) {
 
         json temp = json();
 
+        temp["DISCONNECT"] = "NO";
+        temp["DISC_STATE"] = "NO";
         temp["ADD_FILE"]["NAME"] = fileName;
         temp["ADD_FILE"]["CONTENT"] = fileContent;
+        temp["READ_FILE"] = "NO";
+        temp["SEARCH_FILE"] = "NO";
+        temp["DELETE_FILE"] = "NO";
+        temp["UPDATE"] = false;
+
+        ClientSock::getInstance()->Send(temp);
 
         WaitAddFile();
     }
 }
 
 void WaitAddFile(){
-    int8_t count = 0;
-    boole = SetBit(boole, 0, ADDED_FILE_BIT_INDEX);
-
     Wait();
 
-    if (CheckBit(boole, ADDED_FILE_BIT_INDEX)) gtk_label_set_text(ui->getFileCreatedLabel(), "Archivo guardado");
+    if (ClientSock::getInstance()->jsonFile == nullptr) {
 
-    else gtk_label_set_text(ui->getFileCreatedLabel(), "Error al guardar");
+        gtk_label_set_text(ui->getFileCreatedLabel(), "Error al guardar");
 
-    SetBit(boole, 0, ADDED_FILE_BIT_INDEX);
-    SetBit(boole, 0, ABORT_BIT_INDEX);
+    } else {
+
+        if (ClientSock::getInstance()->jsonFile["SAVED"].get<bool>()) gtk_label_set_text(ui->getFileCreatedLabel(), "Archivo guardado");
+    }
+
 }
 
 void ReadFile(GtkButton *button, gpointer user_data) {
@@ -319,7 +353,15 @@ void ReadFile(GtkButton *button, gpointer user_data) {
 
         json temp = json();
 
+        temp["DISCONNECT"] = "NO";
+        temp["DISC_STATE"] = "NO";
+        temp["ADD_FILE"]["NAME"] = "NO";
+        temp["ADD_FILE"]["CONTENT"] = "NO";
         temp["READ_FILE"] = fileName;
+        temp["SEARCH_FILE"] = "NO";
+        temp["DELETE_FILE"] = "NO";
+        temp["UPDATE"] = false;
+
         ClientSock::getInstance()->Send(temp.dump());
 
         WaitReadFile();
@@ -327,6 +369,7 @@ void ReadFile(GtkButton *button, gpointer user_data) {
 }
 
 void WaitReadFile() {
+
     Wait();
 
     if (ClientSock::getInstance()->jsonFile == nullptr) {
@@ -343,14 +386,23 @@ void WaitReadFile() {
 }
 
 void SearchFile(GtkButton *button, gpointer user_data) {
-    std::string tempS = gtk_entry_get_text(&ui->getFileSearchBox1()->parent);
-    if (tempS.empty()) {
+    std::string nombre = gtk_entry_get_text(&ui->getFileSearchBox1()->parent);
+    if (nombre.empty()) {
         gtk_label_set_text(ui->getFileOpenedLabel(), "Debe introducir un nombre");
 
     } else {
-        g_print("Hay texto, dice %s", tempS.c_str());
+        g_print("Hay texto, dice %s", nombre.c_str());
         json temp = json();
-        temp["SEARCH_FILE"] = tempS;
+
+        temp["DISCONNECT"] = "NO";
+        temp["DISC_STATE"] = "NO";
+        temp["ADD_FILE"]["NAME"] = "NO";
+        temp["ADD_FILE"]["CONTENT"] = "NO";
+        temp["READ_FILE"] = "NO";
+        temp["SEARCH_FILE"] = nombre;
+        temp["DELETE_FILE"] = "NO";
+        temp["UPDATE"] = false;
+
         ClientSock::getInstance()->Send(temp.dump());
         gtk_label_set_text(ui->getFileOpenedLabel(), "Búsqueda exitosa");
 
@@ -383,7 +435,14 @@ void DeleteFile(GtkButton *button, gpointer user_data) {
     } else {
         json temp = json();
 
+        temp["DISCONNECT"] = "NO";
+        temp["DISC_STATE"] = "NO";
+        temp["ADD_FILE"]["NAME"] = "NO";
+        temp["ADD_FILE"]["CONTENT"] = "NO";
+        temp["READ_FILE"] = "NO";
+        temp["SEARCH_FILE"] = "NO";
         temp["DELETE_FILE"] = gtk_combo_box_text_get_active_text(ui->getFileComboBox1());
+        temp["UPDATE"] = false;
 
         ClientSock::getInstance()->Send(temp.dump());
 
@@ -398,7 +457,8 @@ void WaitDelete() {
         gtk_label_set_text(ui->getFileOpenedLabel(), "Error al borrar");
 
     } else {
-        gtk_label_set_text(ui->getFileOpenedLabel(), "Borrado con éxito");
+        if (ClientSock::getInstance()->jsonFile["DELETED"].get<bool>())
+            gtk_label_set_text(ui->getFileOpenedLabel(), "Borrado con éxito");
     }
     ClientSock::getInstance()->jsonFile = nullptr;
 }
