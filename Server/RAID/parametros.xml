@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Nodes>
+    <Node1>
+        <IP>127.0.0.1</IP>
+        <Port>5000</Port>
+        <Path>../RAID/Node1</Path>
+    </Node1>
+    <Node2>
+        <IP>127.0.0.1</IP>
+        <Port>5001</Port>
+        <Path>../RAID/Node2</Path>
+    </Node2>
+    <Node3>
+        <IP>127.0.0.1</IP>
+        <Port>5002</Port>
+        <Path>../RAID/Node3</Path>
+    </Node3>
+</Nodes>

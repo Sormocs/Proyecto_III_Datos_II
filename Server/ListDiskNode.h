@@ -14,11 +14,12 @@ class ListDiskNode {
 private:
 
     DiskNode* head;
+    int size = 1;
 
 public:
 
     ListDiskNode();
-    void Add(DiskNode* node);
+    void Add(std::string path);
     void DeleteNode(int i);
 
 };

@@ -4,22 +4,36 @@
 
 #include "ListDiskNode.h"
 
+/**
+ * @brief constructor from listdisknode
+ */
+
 ListDiskNode::ListDiskNode() {
     head = nullptr;
 }
 
-void ListDiskNode::Add(DiskNode *node) {
+/**
+ * @brief add new node
+ * @param path string path
+ */
 
+void ListDiskNode::Add(std::string path) {
+    DiskNode* node = new DiskNode(path);
     if(head == nullptr){
-        head = nullptr;
+        head = node;
     } else{
-        DiskNode* temp;
+        DiskNode* temp = new DiskNode(path);
         for (temp = head; temp->GetNext() != nullptr; temp = temp->GetNext());
         temp->SetNext(node);
         node->SetBack(temp);
     }
 
 }
+
+/**
+ * @brief Delete node
+ * @param i int
+ */
 
 void ListDiskNode::DeleteNode(int i) {
 
