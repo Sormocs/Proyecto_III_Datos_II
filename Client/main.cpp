@@ -1,7 +1,8 @@
 #include "ClientSock.h"
 #include "Interface.h"
 
-void Graphics() {
+void Graphics(int argc, char *argv[]) {
+    SetInstance(new UI(argc, argv));
     Run();
 }
 
@@ -12,17 +13,15 @@ void RunClient(){
 
 int main(int argc, char *argv[]) {
 
-    std::thread Instance(SetInstance, new UI(argc, argv));
-    Instance.join();
 
 
-    std::thread RunGraphics(Graphics);
+    std::thread RunGraphics(Graphics, argc, argv);
 
     std::thread RunC(RunClient);
 
     RunGraphics.join();
 
-//    RunC.join();
+    RunC.join();
 
     return 0;
 }
