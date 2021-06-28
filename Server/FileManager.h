@@ -7,7 +7,12 @@
 
 #include <iostream>
 #include <fstream>
+#include "json.hpp"
+#include <iomanip>
+#include "tinyxml2.h"
 
+using json = nlohmann::json;
+using namespace tinyxml2;
 using namespace std;
 
 class FileManager {
@@ -15,8 +20,16 @@ class FileManager {
 public:
 
     void Write(std::string text, std::string path);
+    void Delete(std::string path);
     std::string Read(std::string path);
 
+    void WriteJson(json obj, std::string path);
+    json ReadJson(std::string path);
+
+    void GenerateXML();
+    std::string GetPath(std::string node);
+    std::string GetIP(std::string node);
+    std::string GetPort(std::string node);
 };
 
 
