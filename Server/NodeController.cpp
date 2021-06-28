@@ -45,19 +45,19 @@ void NodeController::SaveFile(string text, string path) {
  * @param name string name of file
  */
 
-void NodeController::DeleteFile( string name) {
+void NodeController::DeleteFile(string name) {
 
     string dataFile = file->Read(path1 + "/" + name + ".txt");
 
     int bytes = dataFile.length()/8;
 
-    //file->Delete(path1 + "/" + name + ".txt");
-    //file->Delete(path2 + "/" + name + ".txt");
-    //file->Delete(path3 + "/" + name + ".txt");
+    file->Delete(path1 + "/" + name + ".txt");
+    file->Delete(path2 + "/" + name + ".txt");
+    file->Delete(path3 + "/" + name + ".txt");
 
     DeleteMetada(name,path1,bytes);
-    //DeleteMetada(name,path2,bytes);
-    //DeleteMetada(name,path3,bytes);
+    DeleteMetada(name,path2,bytes);
+    DeleteMetada(name,path3,bytes);
 
 }
 
@@ -153,6 +153,7 @@ json NodeController::ReadRaid(string name) {
     json temp;
 
     int size = obj["amount"].get<int>();
+    int newSize = 0;
 
     for (int i = 0; i < size; ++i) {
 
@@ -160,11 +161,12 @@ json NodeController::ReadRaid(string name) {
             string data = ReadBook(obj["Archivos"][to_string(i)]["name"].get<string>());
             temp[to_string(i)]["name"] = obj["Archivos"][to_string(i)]["name"].get<string>();
             temp[to_string(i)]["data"] = data;
+            newSize++;
         }
 
     }
 
-    temp["size"] = size;
+    temp["size"] = newSize;
 
     return temp;
 }
