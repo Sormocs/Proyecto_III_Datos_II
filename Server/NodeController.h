@@ -46,6 +46,8 @@ public:
     bool ChangeDisk1();
     bool ChangeDisk2();
 
+    bool VerifyMetada(string name);
+
 
 };
 

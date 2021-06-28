@@ -4,7 +4,6 @@
 
 #include "NodeController.h"
 
-
 /**
  * @brief constructor of NodeController
  */
@@ -32,9 +31,11 @@ void NodeController::SaveFile(string text, string path) {
     file->Write(converter->text2,path2 + "/" + path + ".txt");
     file->Write(converter->parity,path3 + "/" + path+ ".txt");
 
-    ConfigMetada(path,  path1, converter->text1.length()/8);
-    ConfigMetada(path,  path2, converter->text1.length()/8);
-    ConfigMetada(path,  path3, converter->text1.length()/8);
+    if(VerifyMetada(path)){
+        ConfigMetada(path,  path1, converter->text1.length()/8);
+        ConfigMetada(path,  path2, converter->text1.length()/8);
+        ConfigMetada(path,  path3, converter->text1.length()/8);
+    }
 
     converter->ResetText();
 
@@ -297,4 +298,28 @@ bool NodeController::ChangeDisk2() {
     this->activeDisk2 = !this->activeDisk2;
 
     return this->activeDisk2;
+}
+
+/**
+ * @brief verify is the file exist
+ * @param name
+ * @return bool
+ */
+
+bool NodeController::VerifyMetada(string name) {
+
+    json obj = file->ReadJson(path3 + "/metadata.json");
+
+    int size = obj["amount"].get<int>();
+
+    if(size == 0){
+        return true;
+    } else{
+        for (int i = 0; i < size; i++) {
+            if(name == obj["Archivos"][to_string(i)]["name"].get<string>()){
+                return false;
+            }
+        }
+    }
+    return true;
 }
